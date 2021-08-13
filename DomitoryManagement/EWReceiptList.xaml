@@ -1,0 +1,335 @@
+﻿<Window x:Class="DomitoryManagement.EWReceiptList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:DomitoryManagement"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Icon="Anh/ruble.png"
+        Title="Receipt_Electricity_Water" Height="600" Width="1450"
+        DataContext="{StaticResource EWReceiptListVM}">
+    <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="Small" >
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+        <Style TargetType="DataGridColumnHeader"  >
+                <!--<Setter Property="HorizontalAlignment" Value="Center"></Setter>-->
+                <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+
+            </Style>
+        <Style TargetType="DataGridCell" >
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <!--<Setter Property="FontWeight" Value="Bold"></Setter>-->
+            <Setter Property="Margin" Value="10,20"></Setter>
+        </Style>
+        <Style x:Key="MaterialDesignRaisedAccentButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+
+            <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
+
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondaryAccentBrush}"/>
+
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+            <Setter Property="Background" Value="Red"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Text=" Danh sách biên lai điện nước"
+                   FontSize="30"
+                   FontFamily="Times New Roman"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="20,0,0,0"
+                   Foreground="#FF2A69E7">
+        </TextBlock>
+        <Grid Grid.Row="1">
+            <DataGrid ItemsSource="{Binding BLDIENNUOCFULLLIST}"
+                      SelectedItem="{Binding SelectedBIENLAI}"
+                      AutoGenerateColumns="False"
+                     IsReadOnly="True"
+                      AlternationCount="2"
+                      SelectionUnit="FullRow">
+                <DataGrid.InputBindings>
+                    <MouseBinding
+                        Gesture="LeftDoubleClick"
+                        Command="{Binding AddInfoCommand}"
+                        CommandParameter="{Binding Path=SelectedBIENLAI}"/>
+                </DataGrid.InputBindings>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="White"></Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding ="{Binding Path=CHISODIEN}" Value ="0">
+                                <Setter Property="Background" Value="Azure"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding ="{Binding Path=CHISONUOC}" Value ="0">
+                                <Setter Property="Background" Value="Azure"></Setter>
+                            </DataTrigger>
+                            
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID"  
+                                        Binding="{Binding IDBL}"
+                                        Width="75"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Phòng"  
+                                        Binding="{Binding TENPHONG}"
+                                        Width="100"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tòa"  
+                                        Binding="{Binding TENTOA}"
+                                        Width="65"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tháng năm"
+                                        Binding="{Binding THANGNAM}"
+                                        Width="150"></DataGridTextColumn>
+                    <!--<DataGridTextColumn Header="Ngày chốt sỉ số" 
+                                        Binding="{Binding NGAYCHOT}"
+                                        Width="150"></DataGridTextColumn>-->
+                    <DataGridTemplateColumn Header="Chỉ số điện" 
+                                            Width="250">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                           
+                                        </Grid.ColumnDefinitions>
+                                        <!--<i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="">
+                                                <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
+                                   CommandParameter="{Binding ElementName=MWindow}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>-->
+                                        <TextBlock Grid.Column="0"  
+                                                   TextAlignment="Justify"
+                                                   VerticalAlignment="Center"
+                                                   Width="100"
+                                                   Text="Sử dụng"></TextBlock>
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                            <TextBlock 
+                                                   FontWeight="Bold"
+                                                   TextAlignment="Justify"
+                                                   VerticalAlignment="Center"
+                                                   Width="auto"
+                                                   Text="{Binding CHISODIEN}"
+                                                   ></TextBlock>
+                                            <TextBlock
+                                                   FontWeight="Bold"
+                                                   TextAlignment="Justify"
+                                                   VerticalAlignment="Center"
+                                                   Width="auto"
+                                                   Text=" Kw/h"
+                                                   ></TextBlock>
+                                        </StackPanel>
+                                        
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0"
+                                                   TextAlignment="Justify"
+                                                   VerticalAlignment="Center"
+                                                   Width="100"
+                                                   FontSize="23"
+                                                   Text="Số tiền"></TextBlock>
+                                        <TextBlock Grid.Column="1"
+                                                   FontWeight="Bold"
+                                                   TextAlignment="Justify"
+                                                   VerticalAlignment="Center"
+                                                   Width="auto"
+                                                   FontSize="23"
+                                                   Text="{Binding TIENDIEN}"
+                                                   ></TextBlock>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Chỉ số nước" 
+                                            Width="250">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0"
+                                                   TextAlignment="Justify"
+                                                   VerticalAlignment="Center"
+                                                   Width="auto"
+                                                   Text="Sử dụng"></TextBlock>
+                                        <StackPanel Orientation="Horizontal"  Grid.Column="1">
+                                            <TextBlock
+                                                   FontWeight="Bold"
+                                                   TextAlignment="Justify"
+                                                   VerticalAlignment="Center"
+                                                   Width="auto"
+                                                   Text="{Binding CHISONUOC}"
+                                                   ></TextBlock>
+                                            <TextBlock
+                                                   FontWeight="Bold"
+                                                   TextAlignment="Justify"
+                                                   VerticalAlignment="Center"
+                                                   Width="auto"
+                                                   Text=" Khối"
+                                                   ></TextBlock>
+                                            
+                                        </StackPanel>
+                                        
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0"
+                                                   TextAlignment="Justify"
+                                                   VerticalAlignment="Center"
+                                                   Width="auto"
+                                                   FontSize="23"
+                                                   Text="Số tiền"></TextBlock>
+                                        <TextBlock Grid.Column="1"
+                                                   FontWeight="Bold"
+                                                   TextAlignment="Justify"
+                                                   VerticalAlignment="Center"
+                                                   Width="auto"
+                                                   FontSize="23"
+                                                   Text="{Binding TIENNUOC}"
+                                                   ></TextBlock>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Tổng cộng"  
+                                        Binding="{Binding TONGCONG}"
+                                        FontSize="23" FontWeight="Bold"
+                                        Width="150"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Tình trạng" 
+                                            Width="150">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"  FontWeight="Bold" >
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Text" Value="Chưa thanh toán"></Setter>
+                                            <Setter Property="Foreground" Value="Red"></Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding TINHTRANG}" Value="True">
+                                                    <Setter Property="Text" Value="Đã thanh toán"></Setter>
+                                                    <Setter Property="Foreground" Value="#DD1DA808"></Setter>
+                                                </DataTrigger>
+                                                <!--<DataTrigger Binding="{Binding THONGTINTHANHTOAN}" Value="False">
+                                                    <Setter Property="Text" Value="Chưa thanh toán"></Setter>
+                                                    <Setter Property="Foreground" Value="#Red"></Setter>
+                                                </DataTrigger>-->
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="..." 
+                                            Width="150">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <StackPanel Orientation="Horizontal" Width="auto">
+                                    <Button 
+                                                    CommandParameter="{Binding Path= IDBL}"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                                            
+                                            Width="auto" >
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}" >
+                                                <Setter Property="Command" Value="{Binding Path=DataContext.ChargeCommand,       
+                                                    RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"></Setter>
+                                                <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth5"></Setter>
+                                                <Setter Property="Background" Value="#FF47974B"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+                                                <Style.Triggers >
+                                                    <DataTrigger Binding ="{Binding Path=TINHTRANG,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Value ="True">
+                                                        <Setter Property="Background" Value="Red"></Setter>
+                                                        <Setter Property="Command" Value="{Binding Path=DataContext.DeleteBLCommand,       
+                                                    RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                    ></Setter>
+                                                        
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+
+                                            </Style>
+                                        </Button.Style>
+                                        <StackPanel Width="auto" Orientation="Horizontal">
+                                            <!--set icon-->
+                                            <materialDesign:PackIcon    HorizontalAlignment="Left" >
+                                                <materialDesign:PackIcon.Style>
+                                                    <Style TargetType="materialDesign:PackIcon">
+                                                        <Setter Property="Kind" Value="Pen"></Setter>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding ="{Binding Path=TINHTRANG,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Value ="True">
+                                                                <Setter Property="Kind" Value="TrashCan"></Setter>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </materialDesign:PackIcon.Style>
+                                            </materialDesign:PackIcon>
+                                            <!--set textblock-->
+                                            <TextBlock Margin="10,0,0,0" HorizontalAlignment="Right">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Text" Value="Nộp tiền" ></Setter>
+                                                        
+                                                        <Style.Triggers >
+                                                            <DataTrigger Binding ="{Binding Path=TINHTRANG,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Value ="True">
+                                                                <Setter Property="Text" Value="Hủy BL"></Setter>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Button>
+
+
+
+
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>

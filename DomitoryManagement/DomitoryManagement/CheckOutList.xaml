@@ -1,0 +1,141 @@
+﻿<Window x:Class="DomitoryManagement.CheckOutList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DomitoryManagement"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource CheckOutListVM}"
+        Title="CheckOut" Height="700" Width="1000"
+        Icon="/Anh/lgcheckout.png">
+    <Window.Resources>
+        <Style TargetType="DataGridColumnHeader"  >
+            <!--<Setter Property="HorizontalAlignment" Value="Center"></Setter>-->
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+
+        </Style>
+        <Style TargetType="DataGridCell" >
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Margin" Value="10,20"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                                   Text="Họ và Tên" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Bold" ></TextBlock>
+                <TextBox Grid.Column="1"
+                                     Margin="10,0,0,0"
+                                 x:Name="NameFind" 
+                                 BorderBrush="Aqua"
+                                 BorderThickness="2"
+                                 VerticalAlignment="Center" 
+                                 HorizontalAlignment="Left"
+                                 Height="40"
+                                 Width="200"
+                                     
+                            Text="{Binding NameFind ,UpdateSourceTrigger=PropertyChanged , NotifyOnSourceUpdated=True}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction Command="{Binding FindBtn}"
+                                   />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                                   Text="MSSV" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Bold" ></TextBlock>
+                <TextBox Grid.Column="1"
+                                     Margin="10,0,0,0"
+                                 x:Name="MSSVFind" 
+                                 BorderBrush="Aqua"
+                                 BorderThickness="2"
+                                 VerticalAlignment="Center" 
+                                 HorizontalAlignment="Left"
+                                 Height="40"
+                                 Width="200"
+                                     
+                            Text="{Binding MSSVFindNumber ,UpdateSourceTrigger=PropertyChanged , NotifyOnSourceUpdated=True}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction Command="{Binding FindBtn}"
+                                   />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" 
+              Margin="5,5,5,5">
+            <DataGrid
+                ItemsSource="{Binding SV_ROOMLIST }"
+                  IsReadOnly="True" 
+                  AutoGenerateColumns="False"
+                  AlternatingRowBackground="Gainsboro"  AlternationCount="2"
+                  SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                    <DataGridTextColumn Width="75" Header="ID" Binding="{Binding IDSINHVIEN}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="230" Header="Họ và Tên" Binding="{Binding HOTEN}"></DataGridTextColumn>
+                <DataGridTextColumn Width="100" Header="Trường" Binding="{Binding TENTRUONG}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="100" Header="Tòa" Binding="{Binding TENTOA}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="100" Header="Phòng" Binding="{Binding TENPHONG}"></DataGridTextColumn>
+
+                    <DataGridTextColumn Width="150" Header="Ngày vào" Binding="{Binding NGAYVAO}"></DataGridTextColumn>
+                
+                    <DataGridTemplateColumn Header="Trả phòng" Width="150">
+                <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Width="auto">
+                                <Button x:Name="abc"  Command="{Binding Path=DataContext.CheckOutCommand,       
+                                                   
+                                    RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                         materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                                                    CommandParameter="{Binding Path= IDSINHVIEN}" Background="#FFF12962">
+                                    <StackPanel Width="auto" Orientation="Horizontal">
+                                        <materialDesign:PackIcon   Kind="Wrap" HorizontalAlignment="Left"  />
+                                        <TextBlock Margin="10,0,0,0" Text="Trả phòng" HorizontalAlignment="Right"></TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+             </DataGrid.Columns>
+        </DataGrid>
+        </Grid>
+    </Grid>
+</Window>

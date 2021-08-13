@@ -1,0 +1,118 @@
+﻿<Window x:Class="DomitoryManagement.EWCostSetting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DomitoryManagement"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Icon="Anh/ruble.png"
+        Title="EWCostSetting" Height="600" Width="900"
+        
+        DataContext="{StaticResource EWCostSettingVM}">
+    <Window.Resources>
+        <Style TargetType="DataGridColumnHeader"  >
+            <!--<Setter Property="HorizontalAlignment" Value="Center"></Setter>-->
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+
+        </Style>
+        <Style TargetType="DataGridCell" >
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Margin" Value="10,20"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" 
+                BorderBrush="Black" 
+                BorderThickness="2"
+                Margin="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" Margin="1">
+                    <TextBlock Text="Bảng giá điện"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="25"
+                           FontFamily="Times New Roman"
+                           FontWeight="Bold"></TextBlock>
+                </Border>
+                <DataGrid Grid.Row="1"
+                      ItemsSource="{Binding ECOSTNEW}"
+                      AutoGenerateColumns="False"
+                      AlternatingRowBackground="Gainsboro"  
+                      AlternationCount="2"
+                      SelectionUnit="FullRow"
+                      CanUserSortColumns="False">
+                    <DataGrid.ItemBindingGroup>
+                        <BindingGroup/>
+                    </DataGrid.ItemBindingGroup>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mức"
+                                            IsReadOnly="True"
+                                        Width="120"
+                                        Binding="{Binding IDMUCDIEN}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Giá"
+                                        Width="120"
+                                        Binding="{Binding GIADIEN}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Chi tiết giá"
+                                        Width="194"
+                                        Binding="{Binding CHITIETGIADIEN}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+        </Border>
+        <Border Grid.Column="1" 
+                BorderBrush="Black" 
+                BorderThickness="2"
+                Margin="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" Margin="1">
+                    <TextBlock Text="Bảng giá nước"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="25"
+                           FontFamily="Times New Roman"
+                           FontWeight="Bold"></TextBlock>
+                </Border>
+                <DataGrid Grid.Row="1"
+                      ItemsSource="{Binding WCOSTNEW}"
+                      AutoGenerateColumns="False"
+                      AlternatingRowBackground="Gainsboro"  
+                      AlternationCount="2"
+                      SelectionUnit="FullRow"
+                      CanUserSortColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mức"
+                                            IsReadOnly="True"
+                                        Width="120"
+                                        Binding="{Binding IDMUCNUOC}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Giá"
+                                        Width="120"
+                                        Binding="{Binding GIANUOC}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Chi tiết giá"
+                                        Width="194"
+                                        Binding="{Binding CHITIETGIANUOC}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

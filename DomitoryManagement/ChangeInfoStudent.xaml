@@ -1,0 +1,328 @@
+﻿<Window x:Class="DomitoryManagement.ChangeInfoStudent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:DomitoryManagement"
+        mc:Ignorable="d"
+        DataContext="{StaticResource ChangeInfoVM}"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Anh/lgedit.png"
+        Title="Change Student's Information Window" Height="750" Width="800"
+         x:Name="ChangeInfoStudentWindow"  >
+         
+    <Window.Resources>
+
+        <Style TargetType="TextBlock" x:Key="RowLeft" >
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+
+        </Style>
+        <Style TargetType="TextBox" x:Key="RowRight" >
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="Anh/Sky2.jpg"/>
+    </Window.Background>
+    <Grid >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--ROW 1-->
+        <Grid Margin="29,8,14.6,625.8" Grid.RowSpan="2" Background="#FFF9F9F9" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="412*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Row="0" TextAlignment="Center" 
+                                           HorizontalAlignment="Center" 
+                                           FontSize="40"
+                                           VerticalAlignment="Center" 
+                                           FontFamily="Times New Roman" FontWeight="Bold"  Grid.Column="1"
+                                           HorizontalContentAlignment="Center"
+                                           Text="{Binding Name,Mode=TwoWay}" Foreground="#FFD7810C" >
+            </TextBox>
+        </Grid>
+        <!--ROW 2-->
+        <Grid Grid.Row="1" Margin="-11,11.2,11.6,-11.6">
+
+            <Border  Margin="39,0,-0.4,0">
+                <Grid>
+
+                    <!--TAO 10 DONG-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <!--DONG 1 ->10-->
+                    <!--Dong 1-->
+                    <Grid Grid.Row="0" Background="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Blue" BorderThickness="2"  >
+                                <TextBlock Style="{StaticResource RowLeft}" Margin="0,-0.2,29.6,0" Text="Ngày sinh"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="2">
+                                <DatePicker
+                                                    HorizontalAlignment="Left"
+                                                        Height="45"
+                                                          Width="300"
+                                                          materialDesign:HintAssist.Hint="dd/MM/yyyy"
+                                                            FontSize="20"
+                                                            
+                                                         SelectedDate="{Binding Birthday}"
+                                                        SelectedDateFormat="Short"
+                                                    
+                                                    
+                                                          Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Background="White" FontFamily="Times New Roman" Margin="32.8,-6.2,0,6" />
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <!--Het dong 1-->
+
+                    <!--Dong 2-->
+                    <Grid Grid.Row="1" Background="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Blue" BorderThickness="2"  >
+                                <TextBlock Style="{StaticResource RowLeft}" Margin="0,-0.2,29.6,0" Text="Giới tính"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="2">
+                                <Grid>
+
+                                    <ComboBox  SelectedItem="{Binding Gender,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="Gender" FontSize="20" FontFamily="Times New Roman"  VerticalAlignment="Center" Height="40" Width="300" HorizontalAlignment="Left" Margin="28,3,0,3.4"  >
+                                        <ComboBox.Resources>
+                                            
+
+                                            <Style TargetType="{x:Type  ComboBoxItem}" x:Key="isNam">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path= Gender}" Value="Nam">
+                                                        <Setter Property="IsSelected" Value="True"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                            <Style TargetType="{x:Type  ComboBoxItem}" x:Key="isNu">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path= Gender}" Value="Nữ">
+                                                        <Setter Property="IsSelected" Value="True"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+
+
+
+                                        </ComboBox.Resources>
+
+
+
+
+                                        <ComboBoxItem  Content="Nam" Foreground="Red" FontSize="20" FontFamily="Times New Roman" Style="{StaticResource isNam}">
+                    
+                                            </ComboBoxItem>
+                                        <ComboBoxItem   Content="Nữ" Foreground="Purple" FontSize="20" FontFamily="Times New Roman"  Style="{StaticResource isNu}">
+                                 
+                                            </ComboBoxItem>
+                                        
+
+                                    </ComboBox>
+                                   
+                                </Grid>
+                               
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <!--Het dong 2-->
+
+                    <!--Dong 3-->
+                    <Grid Grid.Row="2" Background="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Blue" BorderThickness="2"  >
+                                <TextBlock Style="{StaticResource RowLeft}" Margin="0,-0.2,29.6,0" Text="Số điện thoại"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="2">
+                                <TextBox Style="{StaticResource RowRight}" Margin="29.8,-0.2,0,0" Text="{Binding PhoneNumber,Mode=TwoWay}"></TextBox>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <!--Het dong 3-->
+
+                    <!--Dong 4-->
+                    <Grid Grid.Row="3" Background="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Blue" BorderThickness="2"  >
+                                <TextBlock Style="{StaticResource RowLeft}" Margin="0,-0.2,29.6,0" Text="Sinh viên năm"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="2">
+                                <TextBox Style="{StaticResource RowRight}" Margin="29.8,-0.2,0,0" Text="{Binding LearningYear,Mode=TwoWay}"></TextBox>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <!--Het dong 4-->
+
+                    <!--Dong 5-->
+                    <Grid Grid.Row="4" Background="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Blue" BorderThickness="2"  >
+                                <TextBlock Style="{StaticResource RowLeft}" Margin="0,-0.2,29.6,0" Text="Trường"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="2">
+                                <TextBox Style="{StaticResource RowRight}" Margin="29.8,-0.2,0,0" Text="{Binding School,Mode=TwoWay}"></TextBox>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <!--Het dong 5-->
+
+                    <!--Dong 6-->
+                    <Grid Grid.Row="5" Background="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Blue" BorderThickness="2"  >
+                                <TextBlock Style="{StaticResource RowLeft}" Margin="0,-0.2,29.6,0" Text="Khoa"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="2">
+                                <TextBox Style="{StaticResource RowRight}" Margin="29.8,-0.2,0,0" Text="{Binding Major,Mode=TwoWay}"></TextBox>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <!--Het dong 6-->
+                    <!--Dong 7-->
+                    <Grid Grid.Row="6" Background="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Blue" BorderThickness="2"  >
+                                <TextBlock Style="{StaticResource RowLeft}" Margin="0,-0.2,29.6,0" Text="MSSV"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="2">
+                                <TextBox Style="{StaticResource RowRight}" Margin="29.8,-0.2,0,0" Text="{Binding MSSV,Mode=TwoWay}"></TextBox>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <!--Het dong 7-->
+
+                    <!--Dong 8-->
+                    <Grid Grid.Row="7" Background="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Blue" BorderThickness="2"  >
+                                <TextBlock Style="{StaticResource RowLeft}" Margin="0,-0.2,29.6,0" Text="Dân tộc"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="2">
+                                <TextBox Style="{StaticResource RowRight}" Margin="29.8,-0.2,0,0" Text="{Binding Ethnic,Mode=TwoWay}"></TextBox>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <!--Het dong 8-->
+                    <!--Dong 9-->
+                    <Grid Grid.Row="9" Background="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Blue" BorderThickness="2"  >
+                                <TextBlock Style="{StaticResource RowLeft}" Margin="0,-0.2,29.6,0" Text="Số CMND"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="2">
+                                <TextBox Style="{StaticResource RowRight}" Margin="29.8,-0.2,0,0" Text="{Binding Identity,Mode=TwoWay}"></TextBox>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <!--Het dong 9-->
+
+                    <!--Dong 10-->
+                    <Grid Grid.Row="8" Background="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Blue" BorderThickness="2"  >
+                                <TextBlock Style="{StaticResource RowLeft}" Margin="0,-0.2,29.6,0" Text="Quốc tịch"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="2">
+                                <TextBox Style="{StaticResource RowRight}" Margin="29.8,-0.2,0,0" Text="{Binding Nationality,Mode=TwoWay}"></TextBox>
+                            </Border>
+                        </Grid>
+
+                    </Grid>
+                    <!--Het dong 6-->
+                    <Grid Grid.Row="11" >
+                        <Button Content="Save"  
+                                materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                                Width="100" Height="35" 
+                                Margin="461,2,193.4,16.6" 
+                                VerticalContentAlignment="Center"
+                                Command="{Binding SaveChange}"
+                                 CommandParameter="{Binding ElementName=ChangeInfoStudentWindow}" Background="#FF11E066">
+
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="10" Background="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Blue" BorderThickness="2"  >
+                                <TextBlock Style="{StaticResource RowLeft}" Margin="0,-0.2,29.6,0" Text="Quê quán"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="2">
+                                <TextBox Style="{StaticResource RowRight}" Margin="29.8,-0.2,0,0" Text="{Binding HomeLand,Mode=TwoWay}"></TextBox>
+                            </Border>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </Border>
+
+        </Grid>
+    </Grid>
+
+</Window>

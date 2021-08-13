@@ -1,0 +1,62 @@
+﻿<Window x:Class="DomitoryManagement.Roomtype"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DomitoryManagement"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        DataContext="{StaticResource RoomTypeVM}"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Anh/lglist.png"
+        Title="Loại phòng" Height="330" Width="500
+        ">
+    <Window.Resources>
+        <Style TargetType="DataGridColumnHeader"  >
+            <!--<Setter Property="HorizontalAlignment" Value="Center"></Setter>-->
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="FontWeight" Value="Bold" ></Setter>
+
+        </Style>
+        <Style TargetType="DataGridCell" >
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="Margin" Value="10,10"></Setter>
+            <Setter Property="FontWeight" Value="Bold" ></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="SmallTbl">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="TextAlignment" Value="Justify"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock Text="Loại phòng"  Style="{StaticResource ResourceKey=SmallTbl}" HorizontalAlignment="Left" FontWeight="Thin" Margin="22,0,0,0.2" Foreground="#FF006EF9"></TextBlock>
+        </Grid>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding ROOMTYPELISTNew}" IsReadOnly="True" 
+                  AutoGenerateColumns="False"
+                  AlternatingRowBackground="Gainsboro"  AlternationCount="2"
+                   SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Width="15" >
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Loại phòng" Width="115" Binding="{Binding LOAIPHONG}">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Số giường mỗi phòng"  Width="200" Binding="{Binding SOGIUONG}" >
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Tiền phòng" Width="160" Binding="{Binding TIENTHUE}" ></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,0 +1,91 @@
+﻿<Window x:Class="DomitoryManagement.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DomitoryManagement"
+        mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        Title="LOGIN" Height="450" Width="800"
+        Name="Login"
+      DataContext="{StaticResource LoginVM}"
+     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+       Icon="/Anh/lglogin.png"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}">
+   
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Anh/KTXB.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="182*" />
+            <ColumnDefinition Width="215*" />
+        </Grid.ColumnDefinitions>
+        <GroupBox
+              Grid.Column="1"
+              Header="Login System"
+              Style="{DynamicResource MaterialDesignGroupBox}"
+              Margin="170,16,15.6,16"
+              materialDesign:ShadowAssist.ShadowDepth="Depth3"
+              BorderThickness="3" BorderBrush="#FF227A19" Foreground="#FF030303">
+            <Grid>
+                <Grid.Background>
+                    <SolidColorBrush Color="#FFF1D0FC" Opacity="0.3"/>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"></RowDefinition>
+                    <RowDefinition Height="20*"></RowDefinition>
+                    <RowDefinition Height="69*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <PasswordBox
+                    x:Name="Password"
+                      FontWeight="Bold"
+                      Grid.Row="1" VerticalAlignment="Center"
+                        TabIndex="1"
+                      materialDesign:HintAssist.Hint="Password" Margin="22,23.4,6.6,13.2" Height="25" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PasswordChanged">
+                            <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
+                                   CommandParameter="{Binding ElementName=Password}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </PasswordBox>
+                <TextBox
+                     FontWeight="Bold"
+                   Grid.Row="0"
+                  x:Name="User"
+                  materialDesign:HintAssist.Hint="User" Height="30" Margin="23,22,-3.4,9.6" VerticalAlignment="Center"
+                    Text="{Binding UserName ,UpdateSourceTrigger=PropertyChanged}" TabIndex="0"/>
+                <Button Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding ElementName=Login}"
+                            TabIndex="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Grid.Row="2"
+                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth5" Margin="92,32.8,4.8,149" Width="92" Height="31" IsDefault="True">
+                    Login
+                </Button>
+                <!--<TextBlock Grid.Row="2" Margin="7,74.8,-7.4,113">
+                    <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"
+                               NavigateUri="https://www.facebook.com/quangtan0902"> 
+                    Forget Password </Hyperlink>
+                </TextBlock>-->
+                <materialDesign:PackIcon VerticalAlignment="Center" Kind="KeyVariant" Grid.Row="1" RenderTransformOrigin="0.812,3.775"  Margin="5,27.4,0,18.2" Foreground="#DD06A324" />
+                <materialDesign:PackIcon Kind="Account" Grid.Row="0" Margin="6,26,0,8.6" Height="Auto" VerticalAlignment="Stretch" RenderTransformOrigin="-9.788,0.325" Foreground="#DD06A324" />
+            </Grid>
+        </GroupBox>
+        <Grid>
+            <TextBlock Grid.Column="0" Text="DORMITORY MANAGEMENT SYSTEM" FontSize="35
+                       " TextWrapping="Wrap" FontFamily="VNI-Algerian" Margin="16,94,-9,63" FontWeight="ExtraBold" Foreground="#FFE55454"/>
+        </Grid>
+
+
+    </Grid>
+</Window>

@@ -1,0 +1,97 @@
+﻿<Window x:Class="DomitoryManagement.Refund"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DomitoryManagement"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        DataContext="{StaticResource RefundVM}"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Icon="/Anh/lglist.png"
+        Title="Refund" Height="450" Width="900">
+    <Window.Resources>
+        <Style TargetType="DataGridColumnHeader"  >
+            <!--<Setter Property="HorizontalAlignment" Value="Center"></Setter>-->
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+
+        </Style>
+        <Style TargetType="DataGridCell" >
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Margin" Value="10,20"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="45"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Text="Danh sách hoàn trả phí" Foreground ="Blue"
+                   VerticalAlignment="Center"
+                   Margin="20,5,5,5"
+                   FontSize="20"
+                   FontFamily="Times New Roman"></TextBlock>
+        <Button Grid.Row="1" 
+                        Width="102" Height="25"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        VerticalContentAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        Background="#FF0FEB29" 
+                            Style="{DynamicResource MaterialDesignRaisedButton}"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                            Command="{Binding Path=AddNewBLCommand}" Margin="628,8,0,11.6">
+            <StackPanel Width="102" Height="auto" Orientation="Horizontal">
+                <materialDesign:PackIcon   Kind="Plus"   HorizontalAlignment="Left"  FontFamily="Times New Roman" FontWeight="ExtraBlack" VerticalAlignment="Center" Height="17" Width="20"  />
+                <TextBlock Text="Tạo mới"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="59"  ></TextBlock>
+            </StackPanel>
+
+        </Button>
+        <DataGrid Grid.Row="2" ItemsSource="{Binding BIENLAITPLIST}"  
+                                            IsReadOnly="True" 
+                                          AutoGenerateColumns="False"
+                                          AlternatingRowBackground="Gainsboro"  
+                                          AlternationCount="2"
+                                        
+                                          SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                
+                <DataGridTextColumn Header="Ngày trả phòng" Width="150" Binding="{Binding NGAYTRAPHONG}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Tổng cộng" Width="150" Binding="{Binding TIENHOANTRA}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Người nhận" Width="200" Binding="{Binding TENSINHVIEN}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Người thu ngân" Width="200" Binding="{Binding NGUOITHUNGAN}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Hoạt động" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <Button Command="{Binding Path=DataContext.DeleteBL,       
+                                                    RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                    CommandParameter="{Binding Path= IDBL}"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                                            Width="auto" Background="#FFFF5200">
+
+                                    <StackPanel Width="auto" Orientation="Horizontal">
+                                        <materialDesign:PackIcon   Kind="TrashCan" HorizontalAlignment="Left"  />
+                                        <TextBlock Margin="10,0,0,0" Text="Hủy biên lai" HorizontalAlignment="Right"></TextBlock>
+                                    </StackPanel>
+                                </Button>
+
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

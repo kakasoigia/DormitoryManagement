@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewmodel="clr-namespace:DomitoryManagement.ViewModel">
+    <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
+    <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
+    
+    <viewmodel:StudentInforViewModel x:Key="StudentInforVM"></viewmodel:StudentInforViewModel>
+    <viewmodel:ChangePassWordViewModel x:Key="ChangePasswordVM"></viewmodel:ChangePassWordViewModel>
+    <viewmodel:UserInfoViewModel x:Key="UserInfoVM"></viewmodel:UserInfoViewModel>
+    <viewmodel:ChangeInfoViewModel x:Key="ChangeInfoVM"></viewmodel:ChangeInfoViewModel>
+    <viewmodel:AddStudentViewModel x:Key="AddStudentVM"></viewmodel:AddStudentViewModel>
+    <viewmodel:HiringRoomViewModel x:Key="HiringRoomVM"></viewmodel:HiringRoomViewModel>
+    <viewmodel:HiringRoomViewModel2 x:Key="HiringRoomVM2"></viewmodel:HiringRoomViewModel2>
+    <viewmodel:RoomMemberViewModel x:Key="RoomMemberVM"></viewmodel:RoomMemberViewModel>
+    <viewmodel:BuildingDiagramViewModel x:Key="BuildingDiagramVM"></viewmodel:BuildingDiagramViewModel>
+    <viewmodel:RoomListInBuildingViewModel x:Key="RoomListInBuildingVM"></viewmodel:RoomListInBuildingViewModel>
+    <viewmodel:BuildingDiagram_AddNewViewModel x:Key="BuildingDiagram_AddNewVM"></viewmodel:BuildingDiagram_AddNewViewModel>
+    <viewmodel:AddRoomInBuildingViewModel x:Key="AddRoomInBuildingVM"></viewmodel:AddRoomInBuildingViewModel>
+    <viewmodel:BuildingDiagram_AlterBuildingInfoViewModel x:Key="BuildingDiagram_AlterBuildingInfoVM"></viewmodel:BuildingDiagram_AlterBuildingInfoViewModel>
+    <viewmodel:RoomChargeViewModel x:Key="RoomChargeVM"></viewmodel:RoomChargeViewModel>
+    <viewmodel:RoomTypeViewModel x:Key="RoomTypeVM"></viewmodel:RoomTypeViewModel>
+    <viewmodel:StudentFullListViewModel x:Key="StudentFullListVM"></viewmodel:StudentFullListViewModel>
+    <viewmodel:RoomChargeListViewModel x:Key="RoomChargeListVM"></viewmodel:RoomChargeListViewModel>
+    <viewmodel:ReceiptListViewModel x:Key="ReceiptListVM"></viewmodel:ReceiptListViewModel>
+    <viewmodel:ReceiptDetailViewModel x:Key="ReceiptDetailVM"></viewmodel:ReceiptDetailViewModel>
+    <viewmodel:SemesterAddViewModel x:Key="SemesterAddVM"></viewmodel:SemesterAddViewModel>
+    <viewmodel:SemesterEditViewModel x:Key="SemesterEditVM"></viewmodel:SemesterEditViewModel>
+    <viewmodel:SemesterListViewModel x:Key="SemesterListVM"></viewmodel:SemesterListViewModel>
+    <viewmodel:CheckOutListViewModel x:Key="CheckOutListVM"></viewmodel:CheckOutListViewModel>
+    <viewmodel:CheckOutReceiptViewModel x:Key="CheckOutReceiptVM"></viewmodel:CheckOutReceiptViewModel>
+    <viewmodel:EWCostSettingViewModel x:Key="EWCostSettingVM"></viewmodel:EWCostSettingViewModel>
+    <viewmodel:EWReceiptViewModel x:Key="EWReceiptListVM"></viewmodel:EWReceiptViewModel>
+    <viewmodel:EWCostListViewModel x:Key="EWCostListVM"></viewmodel:EWCostListViewModel>
+    <viewmodel:RefundViewModel x:Key="RefundVM"></viewmodel:RefundViewModel>
+    <viewmodel:EWAddFigureViewModel x:Key="EWAddFigureVM"></viewmodel:EWAddFigureViewModel>
+</ResourceDictionary>

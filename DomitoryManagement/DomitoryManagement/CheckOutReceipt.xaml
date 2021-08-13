@@ -1,0 +1,184 @@
+﻿<Window x:Class="DomitoryManagement.CheckOutReceipt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DomitoryManagement"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        FontFamily="Times New Roman"
+        FontSize="17"
+        WindowStartupLocation="CenterScreen"
+        x:Name="ReceiptCheckOutWindow"
+         DataContext="{StaticResource CheckOutReceiptVM}"
+        Title="ReceiptCheckOut" Height="340" Width="400"
+        Icon="/Anh/lglist.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--Tiêu đề-->
+        <Border Grid.Row="0" 
+                BorderBrush="Gray" 
+                BorderThickness="3,3,3,2" 
+                Margin="1">
+            <Grid >
+                <Grid.Background>
+
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0.345"/>
+                        <GradientStop Color="LightBlue" Offset="0.907"/>
+                    </LinearGradientBrush>
+
+                </Grid.Background>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="CalendarText" Height="25" Width="25" />
+                    <TextBlock Text= "Biên lai xác nhận " FontSize="17" Foreground="#FF4C0E09" TextAlignment="Center"  ></TextBlock>
+                    
+                </StackPanel>
+
+            </Grid>
+        </Border>
+        <!--Biên lai-->
+        <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="2" >
+            <Grid>
+                <!--Chia cột trái và phải bự-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                   
+                </Grid.ColumnDefinitions>
+                <!--Cột trái-->
+                
+                <!--Cột phải-->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <!--Hàng đầu để cái Bảng-->
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="10" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" ></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <!--Dòng 1 là tiêu đề-->
+                        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2"  Width="320">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Nội dung"  FontWeight="Bold" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left">
+
+                                </TextBlock>
+                                <TextBlock Grid.Column="1" Text="Số tiền" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" >
+
+                                </TextBlock>
+                            </Grid>
+
+                        </Border>
+                        <!--Dòng 2 nội dung của bảng-->
+                        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0"  Width="320">
+                            <Grid Height="232" VerticalAlignment="Top" Margin="0,0,0,-41.6">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <!--Dòng 1-->
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="153*"></ColumnDefinition>
+                                        <ColumnDefinition Width="63*"/>
+                                        <ColumnDefinition Width="124*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="Gray" BorderThickness="2,2,0,2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.2">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="0,2,2,2" Grid.Column="2" Margin="0,0,0,0.2">
+                                    </Border>
+                                    <!--Nội dung-->
+                                    <WrapPanel Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.2">
+                                        <TextBlock Text="Tiền phòng đã ở ">
+
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Path=TENHOCKI}" ></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text=" ("></TextBlock>
+                                            <TextBlock Text="{Binding TENNAMHOC}"></TextBlock>
+                                            <TextBlock Text=")"></TextBlock>
+                                        </StackPanel>
+                                        
+                                        <TextBlock Text=" từ "></TextBlock>
+                                        <TextBlock Text="{Binding NGAYBATDAU}" FontWeight="Bold"></TextBlock>
+                                        <TextBlock Text=" đến "></TextBlock>
+                                        <TextBlock Text="{Binding NGAYHIENTAI}"  FontWeight="Bold"></TextBlock>
+                                    </WrapPanel>
+                                    <TextBlock Grid.Column="2" Margin="0,0,0,-0.8"  VerticalAlignment="Center" Text="{Binding Path=TIENDAO}"> 
+                                    </TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="153*"></ColumnDefinition>
+                                        <ColumnDefinition Width="63*"/>
+                                        <ColumnDefinition Width="124*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="Gray" BorderThickness="2,2,0,2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.2">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="0,2,2,2" Grid.Column="2" Margin="0,0,0,0.2">
+                                    </Border>
+                                    <TextBlock Grid.Column="0" 
+                                               Text="Tiền đã đóng"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="2" VerticalAlignment="Center"
+                                               Text="{Binding TIENDADONG}"></TextBlock>
+                                </Grid>
+                                <!--Hàng 3 để Tổng cộng-->
+                                <Grid Grid.Row="1" Margin="0,83,0,0" Grid.RowSpan="2" Height="65" VerticalAlignment="Top" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200"></ColumnDefinition>
+                                        <ColumnDefinition Width="200"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" 
+                                       Text="Tiền còn lại:"
+                                       FontSize="15" FontWeight="Bold"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Top"
+                                       ></TextBlock>
+                                    <Grid Grid.Column="1" RenderTransformOrigin="0.504,0.292" Margin="0,0,80,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0"
+                                                   Text="{Binding TONGCONG}" FontFamily="Times New Roman" FontWeight="Bold"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="5,0,0,12" Foreground="#FFF10101">
+
+                                        </TextBlock>
+                                        <Button Width="auto" Height="25"
+                            Style="{DynamicResource MaterialDesignRaisedButton}"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                            IsDefault="True" 
+                            Command="{Binding SaveCommand}" 
+                            CommandParameter="{Binding ElementName=ReceiptCheckOutWindow}" 
+                            
+                            Background="#FFED3C4F" Margin="4,28,5,4.8" Grid.RowSpan="2">
+                                            <StackPanel Orientation="Horizontal" Width="auto">
+                                                <materialDesign:PackIcon Kind="Pokeball" Height="19" />
+                                                <TextBlock Margin="10,0,0,0" Text="Xác nhận"  HorizontalAlignment="Right"></TextBlock>
+                                            </StackPanel>
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

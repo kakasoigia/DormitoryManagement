@@ -1,0 +1,225 @@
+﻿<Window x:Class="DomitoryManagement.SemesterAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DomitoryManagement"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+         WindowStartupLocation="CenterScreen"
+        x:Name="AddSemesterWindow"
+        Icon="/Anh/lgplus.png"
+        DataContext="{StaticResource SemesterAddVM}"
+        Title="AddSemester" Height="450" Width="800">
+    <Window.Resources>
+
+        <Style TargetType="TextBlock" x:Key="RowLeft" >
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+
+        </Style>
+        <Style TargetType="TextBox" x:Key="RowRight" >
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Width" Value="300"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="TextAlignment" Value="Left"></Setter>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"></Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--Hàng 1 - tiêu đề-->
+        <TextBlock Grid.Row="0" 
+                   Text="Thêm học kì"
+                   FontSize="30"
+                   FontWeight="Bold"
+                   FontFamily="Times New Roman"
+                   VerticalAlignment="Center"
+                   Foreground="#FF2A69E7"
+                   Margin="20,0,0,0">
+        </TextBlock>
+        <!--Hàng 2 - nhân vật chính-->
+        <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="2" Width="700" Height="350" Background="#FFFAFAFA" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" >
+                    <!--<StackPanel Orientation="Horizontal" Margin="127,10,-127.8,10" VerticalAlignment="Center" >
+                            <TextBlock Text="ID PHÒNG   :  " FontSize="30" FontWeight="Bold" Foreground="#DDF41007" TextAlignment="Center"  VerticalAlignment="Center"></TextBlock>
+                            <TextBlock  FontSize="35" FontFamily="Times New Roman" FontWeight="Bold" Foreground="#DD0015F7"  TextAlignment="Center" VerticalAlignment="Center" Text="{Binding IDPHONG}" ></TextBlock>
+
+                        </StackPanel>-->
+                </Grid>
+
+
+                <Grid Grid.Row="1">
+
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+
+                    <!--Dong 2 - TÊN HỌC KÌ-->
+
+                    <Grid Grid.Row="0" Width="550">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2" Margin="1,0,0,0" >
+                                <TextBlock Style="{StaticResource RowLeft}"
+                                           Text="Học kì"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2">
+                                <TextBox TabIndex="0" 
+                                         Style="{StaticResource RowRight}" 
+                                         Text="{Binding TENHOCKI,UpdateSourceTrigger=PropertyChanged}" 
+                                         Height="44" 
+                                         HorizontalAlignment="Stretch" 
+                                         Width="Auto" 
+                                         Margin="20,6"/>
+                            </Border>
+                        </Grid>
+                    </Grid>
+
+                    <!--Het dong 2-->
+
+                    <!--Dong 3 - TÊN NĂM HỌC-->
+                    <Grid Grid.Row="1" Width="550">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2" Margin="1,1,0,0" >
+                                <TextBlock Style="{StaticResource RowLeft}" 
+                                           Text="Năm"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="0,1,0,0">
+                                <Grid>
+                                    <Border BorderBrush="Black" BorderThickness="1" Height="58">
+                                        <TextBox TabIndex="0" Style="{StaticResource RowRight}" 
+                                                 Text="{Binding TENNAMHOC,UpdateSourceTrigger=PropertyChanged}" 
+                                                 Height="44" 
+                                                 HorizontalAlignment="Stretch" 
+                                                 Width="Auto" 
+                                                 Margin="20,6"></TextBox>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <!--Het dong 3-->
+
+                    <!--Dong 4 NGAY BAT DAU-->
+                    <Grid Grid.Row="2" Width="550">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2" Margin="1,1,0,0" >
+                                <TextBlock Style="{StaticResource RowLeft}" 
+                                           Text="Ngày bắt đầu"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2" Margin="0,1,0,0">
+                                <Grid>
+                                    <DatePicker Margin="20,10"  FontSize="20"
+                                                VerticalAlignment="Stretch"
+                                                materialDesign:HintAssist.Hint="DD/MM/YY"
+                                                SelectedDate="{Binding NGAYBATDAU}"
+                                                SelectedDateFormat="Short"
+                                                Text="{Binding Path=SelectedDate, StringFormat = {}{0:dd-MM-yyyy}, 
+                                                    RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <!--Het dong 4-->
+
+                    <!-- Dong 5 - NGAY KET THUC-->
+
+                    <Grid Grid.Row="3" Width="550">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2" Margin="1,1,0,0" >
+                                <TextBlock Style="{StaticResource RowLeft}" 
+                                           Text="Ngày kết thúc"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2" Margin="0,1,0,0">
+                                <Grid>
+                                    <DatePicker Margin="20,10" FontSize="20"
+                                                VerticalAlignment="Stretch"
+                                                materialDesign:HintAssist.Hint="DD/MM/YY"
+                                                SelectedDate="{Binding NGAYKETTHUC}"
+                                                SelectedDateFormat="Short"
+                                                Text="{Binding Path=SelectedDate, StringFormat = {}{0:dd-MM-yyyy}, 
+                                                    RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}"
+                                     />
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="4">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="2" 
+                            Style="{DynamicResource MaterialDesignRaisedButton}"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                            IsDefault="True" 
+                            Command="{Binding SaveCommand}" 
+                            CommandParameter="{Binding ElementName=AddSemesterWindow}" 
+                            Width="100"
+                            Background="#FFED3C4F">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="PlusCircle" Height="19" />
+                                <TextBlock Text="Thêm"  HorizontalAlignment="Right"></TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
+</Window>

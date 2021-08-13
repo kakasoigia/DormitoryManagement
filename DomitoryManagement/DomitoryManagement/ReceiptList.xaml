@@ -1,0 +1,410 @@
+﻿<Window x:Class="DomitoryManagement.ReceiptList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DomitoryManagement"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        FontFamily="Times New Roman"
+        DataContext="{StaticResource ReceiptListVM}"
+        Title="ChargeList" Height="600" Width="1400"
+        Icon="/Anh/lglist.png">
+    <Window.Resources>
+        <Style TargetType="TextBlock" >
+
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <!--<Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>-->
+
+        </Style>
+        <Style TargetType="TextBox">
+
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="TextAlignment" Value="Justify"></Setter>
+        </Style>
+        <Style TargetType="DataGridColumnHeader"  >
+                <!--<Setter Property="HorizontalAlignment" Value="Center"></Setter>-->
+                <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+             
+            </Style>
+            <Style TargetType="DataGridCell" >
+                <Setter Property="FontSize" Value="17"></Setter>
+                <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Margin" Value="10,20"></Setter>
+            </Style>
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Margin" Value="0,0,0,0"></Setter>
+        </Style>
+        <!--<Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="20,0,0,0"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter> 
+        </Style>-->
+
+        <Style TargetType="ComboBox" x:Key="cbStackPanel">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="BorderThickness" Value="2"></Setter>
+            <Setter Property="BorderBrush" Value="Aqua"></Setter>
+            <Setter Property="Margin" Value="20 0 0 0"></Setter>
+            <Setter Property="Foreground" Value="#212A37"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Grid.Column="2" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" >
+                                <ToggleButton.Template>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="7*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border x:Name="Border"  Grid.ColumnSpan="2" Background="White" BorderBrush="Black" BorderThickness="0" />
+                                            <Border Grid.Column="0" Background="White"  BorderBrush="Black" BorderThickness="0" />
+                                            <Path x:Name="Arrow" Grid.Column="1"  Fill="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="#CEF6D8" />
+                                            </Trigger>
+                                            <Trigger Property="ToggleButton.IsChecked" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="#CEF6D8" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}"  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="3 4 0 0"  />
+                            <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"  Focusable="False" PopupAnimation="Slide">
+                                <Grid  Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder" Background="White" />
+                                    <ScrollViewer SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--Hàng 1-->
+        <TextBlock Grid.Row="0" 
+                   Text="Danh sách biên lai" 
+                   FontSize="30" 
+                   FontWeight="Bold"
+                   Height="39" 
+                   TextAlignment="Center"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Bottom" Width="auto" Foreground="#FF2A69E7" Margin="10,0,0,1" 
+                   />
+        <!---Hàng 2-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--Cột 1-->
+
+            <!--Bộ lọc Hoten-->
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                                   Text="Họ Tên" 
+                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Bold" 
+                                   Margin="10"></TextBlock>
+                <TextBox Grid.Column="1"
+                                 x:Name="NameFind" 
+                                 BorderBrush="Aqua"
+                                 BorderThickness="2"
+                                 VerticalAlignment="Center" 
+                                 HorizontalAlignment="Center"
+                                 Height="30"
+                                 Width="180"
+                            Text="{Binding NameFind ,UpdateSourceTrigger=PropertyChanged , NotifyOnSourceUpdated=True}" Margin="10,20,12,20">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction Command="{Binding FindBtn}"
+                                   />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+            </Grid>
+            <!--Hàng tên tòa-->
+            <Grid Grid.Column="4" HorizontalAlignment="Left" Width="226" Margin="0,0,-74,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" ></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+                                   Text="Ngày in BL" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Bold" Grid.ColumnSpan="2" Margin="86,23,41.6,24.4" ></TextBlock>
+                <TextBox Grid.Column="1"
+                                 x:Name="a" 
+                                 Margin="205,19,-96.4,21.4"
+                                 BorderBrush="Aqua"
+                                 BorderThickness="2"
+                                 VerticalAlignment="Center" 
+                                 HorizontalAlignment="Left"
+                                 Height="30"
+                                 Width="117"
+                                 Text="{Binding NgayInBLFind ,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction Command="{Binding FindBtn}"
+                                   />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+            </Grid>
+
+            <!--Cột 2-->
+
+            <!--Hàng MSSV-->
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" ></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                                   Text="MSSV" 
+                                   Margin="30,0,0,0"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Bold" ></TextBlock>
+                <TextBox Grid.Column="1"
+                                 x:Name="g" 
+                                     Margin="11.4,20,-9.4,20.4"
+                                 BorderBrush="Aqua"
+                                 BorderThickness="2"
+                                 VerticalAlignment="Center" 
+                                 HorizontalAlignment="Left"
+                                 Height="30"
+                                 Width="122"
+                                 Text="{Binding MSSVFindNumber ,UpdateSourceTrigger=PropertyChanged , NotifyOnSourceUpdated=True}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction Command="{Binding FindBtn}"
+                                   />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+            </Grid>
+            <!--Hàng Tên Trường-->
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                                   Text="Học kì"
+                                   Margin="30,0,0,0"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Bold" ></TextBlock>
+                <ComboBox Grid.Column="1"  Style="{StaticResource cbStackPanel}"
+                         ItemsSource="{Binding HOCKILISTCbb}"
+                                 Margin="10,21,5,19"
+                                 BorderBrush="Aqua"
+                                 BorderThickness="2"
+                                 VerticalAlignment="Center" 
+                                 HorizontalAlignment="Center"
+                                 Width="100"
+                                 SelectedItem="{Binding HocKiFind ,UpdateSourceTrigger=PropertyChanged , NotifyOnSourceUpdated=True}" Height="30">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding FindBtn}"
+                                   />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </Grid>
+            <!--Quê quán-->
+            <Grid Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                                   Text="Năm học" 
+                                       Margin="30,0,0,0"
+                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Bold" ></TextBlock>
+                <ComboBox Grid.Column="1"  Style="{StaticResource cbStackPanel }"
+                                 ItemsSource="{Binding NAMHOCLISTCbb}"
+                                 Margin="10,20,5,20"
+                                 BorderBrush="Aqua"
+                                 BorderThickness="2"
+                                 VerticalAlignment="Center" 
+                                 HorizontalAlignment="Center"
+                                 Height="30"
+                                 Width="140"
+                          VerticalContentAlignment="Center"
+                                 SelectedItem="{Binding NamHocFind ,UpdateSourceTrigger=PropertyChanged , NotifyOnSourceUpdated=True}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding FindBtn}"
+                                   />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </Grid>
+        </Grid>
+        <!--Hàng 3-->
+        <Grid Grid.Row="2">
+            <DataGrid 
+                                            
+                                          ItemsSource="{Binding BIENLAIFULLLIST }"
+                                          IsReadOnly="True" 
+                                          AutoGenerateColumns="False"
+                                          AlternatingRowBackground="Gainsboro"  
+                                          AlternationCount="2"
+                                        
+                                          SelectionUnit="FullRow">
+                
+                <!--<DataGrid.Resources>
+                    <CollectionViewSource x:Key="GroupedBIENLAIFULLLIST" Source="{Binding BIENLAIFULLLIST}">
+                        <CollectionViewSource.GroupDescriptions>
+                            <PropertyGroupDescription PropertyName="Group" />
+                        </CollectionViewSource.GroupDescriptions>
+                    </CollectionViewSource>
+                </DataGrid.Resources>-->
+                <DataGrid.Columns>
+                    <!--Cột ID BIÊN LAI-->
+                    <DataGridTextColumn Width="75" 
+                                                            Header="Số BL"  
+                                                            Binding="{Binding IDBL}"/>
+
+                    <!--Cột MSSV-->
+                    <DataGridTextColumn Width="100" 
+                                                            Header="MSSV"  
+                                                            Binding="{Binding MSSV}"  />
+
+                    <!--Cột Họ và tên-->
+                    <DataGridTextColumn Width="250"
+                                                            Header="Họ và tên"  
+                                                            Binding="{Binding HOTEN}"  />
+                    <DataGridTextColumn Width="100"
+                                                            Header="Học kì"  
+                                                            Binding="{Binding TENHOCKI}"  />
+                    <DataGridTextColumn Width="130"
+                                                            Header="Năm học"  
+                                                            Binding="{Binding TENNAMHOC}"  />
+
+                    <!--Cột Ngày in BL-->
+                    <DataGridTextColumn Width="150" 
+                                                            Header="Ngày in BL"  
+                                                            Binding="{Binding NGAYINBL}"/>
+
+                    <!--Cột Người thu-->
+                    <DataGridTextColumn Width="200"
+                                                            Header="Người thu"  
+                                                            Binding="{Binding TENNGUOITHU}"  />
+
+                    <!--Cột Tổng tiền-->
+                    <DataGridTextColumn Width="150"
+                                                            Header="Tổng tiền"  
+                                                            Binding="{Binding stringTONGTIEN}"  />
+
+                    <DataGridTemplateColumn Header="..." Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="0" Width="auto"
+                                            Command="{Binding Path=DataContext.ReceiptDetailCommand,RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                            CommandParameter="{Binding Path= IDBL}">
+                                        <StackPanel Width="auto" Orientation="Horizontal">
+                                            <materialDesign:PackIcon  Kind="Magnify" HorizontalAlignment="Left"  />
+                                            <TextBlock Text="Chi tiết" HorizontalAlignment="Right"></TextBlock>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Grid.Column="2"  Margin="20,0,0,0" Width="auto"
+                                            Command="{Binding Path=DataContext.DeleteReceiptCommand,       
+                                                    RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                    CommandParameter="{Binding Path= IDBL}" Background="#FFF72929">
+                                        <StackPanel Width="auto" Orientation="Horizontal">
+                                            <materialDesign:PackIcon  Kind="DeleteEmpty" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                                            <TextBlock Text=" Xóa BL" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                
+                <!--<DataGrid.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Name, IsAsync=True}"/>
+                                    
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <Expander IsExpanded="{Binding HOCKILISTGroup}" Foreground="Black">
+                                                <Expander.Header >
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" Foreground="Black"/>
+                                                        <TextBlock Text=" - " Foreground="Black"/>
+                                                        <TextBlock Text="{Binding Path=ItemCount}" Foreground="Black"/>
+                                                    </StackPanel>
+                                                   
+                                                </Expander.Header>
+                                                <ItemsPresenter/>
+                                            </Expander>
+                                            </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </DataGrid.GroupStyle>-->
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
+

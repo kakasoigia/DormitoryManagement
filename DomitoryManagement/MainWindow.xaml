@@ -1,0 +1,934 @@
+﻿<Window x:Class="DomitoryManagement.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DomitoryManagement"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        xmlns:Chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
+        DataContext="{StaticResource MainVM}"
+        WindowStartupLocation="CenterScreen"
+        Name="MWindow"
+        Title="MainWindow" Height="768" Width="1366" Icon="Anh/DormitoryICon.png"
+        
+        >
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
+                                   CommandParameter="{Binding ElementName=MWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid  >
+        <Grid.Resources >
+            <Style TargetType="Button" >
+                <Setter Property="Background" Value="#FFA8CDE2"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                <Setter Property="BorderBrush" Value="White"></Setter>
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="Width" Value="170"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+                <Setter Property="FontSize" Value="17"></Setter>
+
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+                <Setter Property="FontSize" Value="17"></Setter>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TreeView Grid.Column="0" BorderThickness="5" >
+            <TreeView.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.5">
+                    <GradientStop Color="LightCyan" Offset="0"/>
+                    <GradientStop Color="LightCyan" Offset="1"/>
+                    <GradientStop Color="Aqua" Offset="0.056"/>
+                    <GradientStop Color="Azure" Offset="0.669"/>
+                </LinearGradientBrush>
+            </TreeView.Background>
+
+
+            <TreeViewItem FontWeight="Bold">
+                <TreeViewItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Bank" Height="20" />
+                        <TextBlock  Width="88" TextAlignment="Center"><Run Text="  Dashboard"/></TextBlock>
+                    </StackPanel>
+                </TreeViewItem.Header>
+            </TreeViewItem>
+            <TreeView Grid.Column="7" Height="75" Width="200"  >
+                <TreeView.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF205CA0" Offset="1"/>
+                        <GradientStop Color="#FF3E8CE4" Offset="0.735"/>
+                    </LinearGradientBrush>
+                </TreeView.Background>
+                <TreeViewItem Height="75">
+                    <TreeViewItem.Header>
+                        <Grid Height="75" Width="170">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0"
+                                       Source=".\Photo\baocao.png" Margin="0,-9,0,5"/>
+                            <TextBlock Grid.Row="1"
+                                           Width="100"
+                                           FontSize="11"
+                                           TextAlignment="Center">
+                                    <Run Text="BÁO CÁO"/>
+                            </TextBlock>
+                        </Grid>
+                    </TreeViewItem.Header>
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <Grid Background="Black">
+                                <Button Background="Black"
+                                    Command="{Binding  BtnBCDSCommand}">
+                                    <Run Text="Báo cáo doanh số"/>
+                                </Button>
+                            </Grid>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <Grid Background="Black">
+                                <Button Background="Black"
+                                    Command="{Binding  BtnBCLNCommand}">
+                                    <Run Text="Báo cáo CC"/>
+                                </Button>
+                            </Grid>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                </TreeViewItem>
+            </TreeView>
+            <TreeViewItem FontWeight="Bold">
+                <TreeViewItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Settings" Height="20" />
+                        <TextBlock FontSize="15" Width="80" TextAlignment="Center"><Run Text="Hệ thống"/></TextBlock>
+                    </StackPanel>
+                </TreeViewItem.Header>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="Account" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button Background="#FFA8CDE2" x:Name="UserInfo"
+                                    Command="{Binding  UserInfoCommand}"
+                                    CommandParameter="UserInfo">
+                                <Run Text="Tài khoản"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                 Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="Key" Height="24" Width="24" Canvas.Top="-3" />
+                                </Canvas>
+                            </Viewbox>
+                            <Button x:Name="ChangePass" Content="Đổi mật khẩu" 
+                                    Command="{Binding ChangePasswordCommand}"
+                                    CommandParameter=" ChangePass">
+
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                 Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="Logout" Height="24" Width="24" />
+                                </Canvas>
+                            </Viewbox>
+                            <Button Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=MWindow}">
+                                <Run Text="Đăng xuất"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+            </TreeViewItem>
+            <TreeViewItem FontWeight="Bold">
+                <TreeViewItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="AccountCircle" Height="20"/>
+                        <TextBlock FontSize="15" Width="80" TextAlignment="Center"><Run Text="Sinh viên"/></TextBlock>
+                    </StackPanel>
+                </TreeViewItem.Header>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="AccountSearch" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button x:Name="StudentInfor" VerticalAlignment="Stretch" Command="{Binding StudentInforCommand}" CommandParameter="StudentInfor">
+                                <Run Text="Tìm hồ sơ sinh viên"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="AccountPlus" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button Command="{Binding AddStudentCommand}">
+                                <Run Text="Thêm sinh viên"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+            </TreeViewItem>
+            <TreeViewItem FontWeight="Bold">
+                <TreeViewItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Domain" Height="20"/>
+                        <TextBlock FontSize="15" Width="132" TextAlignment="Center"><Run Text="Khu/ Nhà/ Phòng"/></TextBlock>
+                    </StackPanel>
+                </TreeViewItem.Header>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="ViewList" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button VerticalAlignment="Stretch" Command="{Binding BuildingDiagramCommand }">
+                                <Run Text="Sơ đồ Nhà/Phòng"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="FloorPlan" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button VerticalAlignment="Stretch" Command="{Binding RoomTypeCommand}">
+                                <Run Text="Loại phòng"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+
+            </TreeViewItem>
+            <TreeViewItem FontWeight="Bold">
+                <TreeViewItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="FormatListBulleted" />
+                        <TextBlock FontSize="15" Width="96" TextAlignment="Center" FontFamily="Times New Roman"><Run Text="Thuê phòng"/></TextBlock>
+                    </StackPanel>
+                </TreeViewItem.Header>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="ClipboardOutline" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button Command ="{Binding HiringRoomCommand}">
+                                <Run Text="Xếp phòng"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+                <!--<TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="ChevronDoubleRight" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button>
+                                <Run Text="Dồn phòng"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>-->
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="Wrap" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button Command="{Binding CheckOutCommand}">
+                                <Run Text="Trả phòng"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="FormatListCheckbox" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button Command="{Binding RefundCommand}">
+                                <Run Text="DS hoàn trả phòng"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+            </TreeViewItem>
+            <TreeViewItem FontWeight="Bold">
+                <TreeViewItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Pistol" Height="20"/>
+                        <TextBlock FontSize="15" Width="132" TextAlignment="Center"><Run Text="Hóa đơn - Lệ phí"/></TextBlock>
+                    </StackPanel>
+                </TreeViewItem.Header>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="Pistol" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button VerticalAlignment="Stretch" Command="{Binding RoomChargeCommand}">
+                                <Run Text="Thu phí nội trú" />
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="ClipboardText" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button VerticalAlignment="Stretch" Command="{Binding ReceiptListCommand}">
+                                <Run Text="DS hóa đơn - lệ phí"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+
+
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="Settings" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button VerticalAlignment="Stretch" Command="{Binding SemesterSettingCommand}">
+                                <Run Text="Thiết lập học kì"></Run>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+            </TreeViewItem>
+            <TreeViewItem FontWeight="Bold">
+                <TreeViewItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Package" Height="20"/>
+                        <TextBlock FontSize="15" Width="160" TextAlignment="Center"><Run Text="Hóa đơn Điện - Nước"/></TextBlock>
+                    </StackPanel>
+                </TreeViewItem.Header>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="Database" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button VerticalAlignment="Stretch" Command="{Binding EWReceiptListCommand}" Width="164">
+                                <Run Text="Danh sách hóa đơn"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="Electricity" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button VerticalAlignment="Stretch" Command="{Binding EWListCostCommand}" Width="164">
+                                <Run Text="Bảng giá"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+                <!--<TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Viewbox
+                                Width="18"
+                                Height="18">
+                                <Canvas
+                                    Width="24"
+                                    Height="24">
+                                    <materialDesign:PackIcon Kind="SettingsApplications" Height="24" Width="24"/>
+                                </Canvas>
+                            </Viewbox>
+                            <Button VerticalAlignment="Stretch" Command="{Binding SettingCostEWCommand}" Width="164">
+                                <Run Text="Thiết lập giá"/>
+                            </Button>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>-->
+            </TreeViewItem>
+        </TreeView>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" ></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="275"></RowDefinition>
+                <RowDefinition></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <Border Grid.Row="1" BorderBrush="Bisque" BorderThickness="3">
+                <StackPanel  Height="Auto"  Orientation="Horizontal" Background="#FFEBE7E7" >
+                    <materialDesign:PackIcon Kind="ChartGantt" VerticalAlignment="Center" />
+                    <TextBlock VerticalAlignment="Center" TextAlignment="Center" FontWeight="Light"  FontSize="25" Text="Thống kế nhà phòng "  ></TextBlock>
+                </StackPanel>
+            </Border>
+            <Grid Grid.Row="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" BorderBrush="BurlyWood" BorderThickness="3">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Height="150" Stretch="Uniform" Grid.Column="0" Source="Anh/house.jpg"   ></Image>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="170"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock  Grid.Row="0" 
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontSize="60" Foreground="#FF5FB8B2" 
+                                        Text="{Binding NumberOfToa,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" FontFamily="VNI-Algerian" Cursor="None" FontWeight="Bold" 
+                                        />
+                            <TextBlock Grid.Row="1" Text="Nhà" 
+                                       VerticalAlignment="Top"
+                                       HorizontalAlignment="Center"
+                                       FontSize="35" Foreground="#FF0052CA">
+                            </TextBlock>
+                        </Grid>
+                    </Grid>
+                </Border>
+                <Border Grid.Column="1" BorderBrush="BurlyWood" BorderThickness="3">
+                    <Grid  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Height="150" Stretch="Uniform" Grid.Column="0" Source="Anh/room.png"   ></Image>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="170"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock  Grid.Row="0" 
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontSize="60" Foreground="#FFFFC61B" 
+                                        Text="{Binding NumberOfRoom}" FontFamily="VNI-Algerian" Cursor="None" FontWeight="Bold" 
+                                        />
+                            <TextBlock Grid.Row="1" Text="Phòng" 
+                                       VerticalAlignment="Top"
+                                       HorizontalAlignment="Center"
+                                       FontSize="35" Foreground="#FF0052CA">
+                            </TextBlock>
+                        </Grid>
+                    </Grid>
+                </Border>
+                <Border Grid.Column="2" BorderBrush="BurlyWood" BorderThickness="3" Margin="0,0,14.4,0.2">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Height="150" Stretch="Uniform" Grid.Column="0" Source="Anh/student.png"   ></Image>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="170"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock  Grid.Row="0" 
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontSize="60" Foreground="#FF394CB4" 
+                                        Text="{Binding NumberOfStudent}" FontFamily="VNI-Algerian" Cursor="None" FontWeight="Bold" 
+                                        />
+                            <TextBlock Grid.Row="1" 
+                                       Text="Sinh viên"
+                                       VerticalAlignment="Top"
+                                       HorizontalAlignment="Center"
+                                       FontSize="35" Foreground="#FF0052CA">
+                            </TextBlock>
+                            <TextBlock Grid.Row="2" 
+                                       Text="đang thuê"
+                                       VerticalAlignment="Top"
+                                       HorizontalAlignment="Center"
+                                       FontSize="35" Foreground="#FF0052CA">
+                            </TextBlock>
+
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="BorderBrush" Value="BurlyWood"></Setter>
+                        <Setter Property="BorderThickness" Value="2"></Setter>
+                    </Style>
+                </Grid.Resources>
+                <Border Grid.Column="0" Margin="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Image Source="/Anh/iconmoney.png"></Image>
+                                </Grid>
+                                <TextBlock Grid.Column="1" 
+                                       Text="Theo dõi đóng phí nội trú"
+                                       FontSize="23"
+                                       FontFamily="Times New Roman"
+                                       VerticalAlignment="Center"
+                                       Foreground="#FF0052CA"
+                                       Margin="10,0,0,0">
+                                </TextBlock>
+                                <TextBlock Grid.Column="2"
+                                       Text="{Binding TENHOCKI}" VerticalAlignment="Center"
+                                       FontSize="23"
+                                       FontWeight="Bold"
+                                       Foreground="Red"
+                                       Margin="10,0,0,0">
+
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" 
+                                           Text="Tổng số SV dự kiến đóng phí:"
+                                           FontSize="20"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           Margin="0,0,10,0">
+                                    </TextBlock>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <TextBlock 
+                                           Text="{Binding NumberOfStudent}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                            FontSize="20"
+                                           Margin="5,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock 
+                                           Text=" sinh viên"
+                                            FontSize="20"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           >
+                                        </TextBlock>
+                                    </StackPanel>
+
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" Margin="0,-39,0,0">
+                                        <Chart:DoughnutChart ChartTitle=" " 
+                                                        ChartSubTitle=" " 
+                                                        Background="{x:Null}" Margin="10,0,10,10" Padding="0" UseLayoutRounding="True" BorderBrush="#FFE21D1D" SelectedBrush="#FFFF5F06">
+                                            <Chart:DoughnutChart.Series>
+                                                <Chart:ChartSeries
+                                                DisplayMember="Titile"
+                                                ItemsSource="{Binding Path=DONGPHICHART}"
+                                                SeriesTitle="Ditme"
+                                                ValueMember="Percentage"
+                                                />
+                                            </Chart:DoughnutChart.Series>
+                                        </Chart:DoughnutChart>
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <!--Hiện SL SINH VIÊN ĐÃ ĐÓNG PHÍ-->
+                                        <Border Grid.Row="0" BorderThickness="1">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="70"></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <!--Cột 1 chứa hình-->
+                                                <Image  Grid.Column="0" Source="Anh/receipt_not_2.png" Stretch="Uniform"></Image>
+
+                                                <!--Cột 2 chứa thông tin-->
+                                                <Grid Grid.Column="1">
+
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition></RowDefinition>
+                                                        <RowDefinition></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <TextBlock Grid.Row="0" FontSize="20"
+                                                           Text="   SL chưa đóng phí"
+                                                           VerticalAlignment="Center"/>
+                                                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="14,0,0,0">
+                                                        <TextBlock FontSize="18"
+                                                           Text="{Binding sumSVCHUADONG}"/>
+                                                        <TextBlock FontSize="18"
+                                                           Text=" sinh viên"/>
+                                                    </StackPanel>
+
+                                                </Grid>
+                                            </Grid>
+                                        </Border>
+                                        <!--Hiện SL SINH VIÊN CHƯA ĐÓNG PHÍ-->
+                                        <Border Grid.Row="1" BorderThickness="1">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="70"></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <!--Cột 1 chứa hình-->
+                                                <Grid Grid.Column="0">
+                                                    <Image Stretch="Uniform" 
+                                                           Source="/Anh/Receipt4.png" 
+                                                           Margin="8,0,-5,0"></Image>
+                                                </Grid>
+                                                <!--Cột 2 chứa thông tin-->
+                                                <Grid Grid.Column="1">
+
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition></RowDefinition>
+                                                        <RowDefinition></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <TextBlock Grid.Row="0"
+                                                           Text="   SL đã đóng phí"
+                                                           VerticalAlignment="Center"/>
+                                                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="14,0,0,0">
+                                                        <TextBlock FontSize="18"
+                                                           Text="{Binding sumSVDADONG}"/>
+                                                        <TextBlock FontSize="18"
+                                                           Text=" sinh viên"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Column="1" Margin="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Image Source="/Anh/iconmoney.png"></Image>
+                                </Grid>
+                                <TextBlock Grid.Column="1" 
+                                       Text="Theo dõi đóng phí điện nước"
+                                       FontSize="23"
+                                       FontFamily="Times New Roman"
+                                       VerticalAlignment="Center"
+                                       Foreground="#FF0052CA"
+                                       Margin="10,0,0,0">
+                                </TextBlock>
+                                <TextBlock Grid.Column="2"
+                                       Text="{Binding THANGNAM}"
+                                       FontSize="23"
+                                           VerticalAlignment="Center"
+                                       FontWeight="Bold"
+                                       Foreground="Red"
+                                       Margin="10,0,0,0">
+
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" 
+                                           Text="Tổng số phòng dự kiến đóng phí: "
+                                           FontSize="20"
+                                           VerticalAlignment="Center"
+                                               Margin="10,14,263,14" Grid.ColumnSpan="2">
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1"
+                                           Text="{Binding SLPHONGDATHUE}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                               Margin="10,0,0,0">
+                                    </TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" Margin="0,-37,0,0">
+                                        <Chart:DoughnutChart ChartTitle=" " 
+                                                        ChartSubTitle=" "
+                                                        Background="{x:Null}" Padding="0" Margin="10,0,10,10">
+                                            <Chart:DoughnutChart.Series>
+                                                <Chart:ChartSeries
+                                                DisplayMember="Titile"
+                                                ItemsSource="{Binding Path=DIENNUOCCHART}"
+                                                SeriesTitle="Consumo"
+                                                ValueMember="Percentage"
+                                                />
+                                            </Chart:DoughnutChart.Series>
+                                        </Chart:DoughnutChart>
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <!--Hiện SL SINH VIÊN ĐÃ ĐÓNG PHÍ-->
+                                        <Border Grid.Row="0" BorderThickness="1">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="70"></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <!--Cột 1 chứa hình-->
+                                                <Image Grid.Column="0" Source="/Anh/receipt_water_6.png"></Image>
+                                                <!--Cột 2 chứa thông tin-->
+                                                <Grid Grid.Column="1">
+
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition></RowDefinition>
+                                                        <RowDefinition></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <TextBlock Grid.Row="0"
+                                                           Text="Chưa đóng phí ĐN"
+                                                           VerticalAlignment="Center"
+                                                               Margin="15,0,0,0"/>
+                                                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="14,0,0,0">
+                                                        <TextBlock FontSize="18"
+                                                           Text="{Binding sumPHONGCHUADONG}"/>
+                                                        <TextBlock FontSize="18"
+                                                           Text=" phòng"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Grid>
+                                        </Border>
+                                        <!--Hiện SL SINH VIÊN CHƯA ĐÓNG PHÍ-->
+                                        <Border Grid.Row="1" BorderThickness="1">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="70"></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <!--Cột 1 chứa hình-->
+                                                <Image Grid.Column="0" Source="/Anh/receipt_water2.png"></Image>
+                                                <!--Cột 2 chứa thông tin-->
+                                                <Grid Grid.Column="1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="113*"/>
+                                                        <ColumnDefinition Width="84*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition></RowDefinition>
+                                                        <RowDefinition></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <TextBlock Grid.Row="0"
+                                                           Text="Đã đóng phí ĐN"
+                                                           VerticalAlignment="Center" 
+                                                               Margin="10,12,-0.2,11.2" Grid.ColumnSpan="2"/>
+                                                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="14,0,0,0">
+                                                        <TextBlock FontSize="18"
+                                                           Text="{Binding sumPHONGDADONG}"/>
+                                                        <TextBlock FontSize="18"
+                                                           Text=" phòng"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+
+
+
+
+        </Grid>
+    </Grid>
+</Window>

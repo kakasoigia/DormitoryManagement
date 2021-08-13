@@ -1,0 +1,1371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLKTXModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BIENLAIHOANTRAPHONG">
+          <Key>
+            <PropertyRef Name="IDBL" />
+          </Key>
+          <Property Name="IDBL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDSINHVIEN" Type="int" Nullable="false" />
+          <Property Name="IDHOCKI" Type="int" Nullable="false" />
+          <Property Name="NGAYTRAPHONG" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="TIENHOANTRA" Type="money" Nullable="false" />
+          <Property Name="NGUOITHUNGAN" Type="nvarchar(max)" />
+          <Property Name="TENSINHVIEN" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BIENLAITHUEPHONG">
+          <Key>
+            <PropertyRef Name="IDVL" />
+          </Key>
+          <Property Name="IDVL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDSINHVIEN" Type="int" />
+          <Property Name="IDPHONG" Type="int" />
+          <Property Name="TRANGTHAI" Type="bit" />
+          <Property Name="TENNHAPHONG" Type="nvarchar(max)" />
+          <Property Name="LOAIPHONG" Type="int" />
+          <Property Name="DADONGTIENPHONG" Type="bit" />
+          <Property Name="IDHOCKI" Type="int" />
+          <Property Name="TENHOCKI" Type="nvarchar(max)" />
+          <Property Name="NGAYVAO" Type="nvarchar(max)" />
+          <Property Name="NGAYTRAPHONG" Type="nvarchar(max)" />
+          <Property Name="GHICHU" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BIENLAITIENPHONG">
+          <Key>
+            <PropertyRef Name="IDBL" />
+          </Key>
+          <Property Name="IDBL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDSINHVIEN" Type="int" />
+          <Property Name="ID_DSSV_TIENPHONG" Type="int" />
+          <Property Name="IDHOCKI" Type="int" />
+          <Property Name="IDPHONG" Type="int" />
+          <Property Name="NGAYINBL" Type="varchar" MaxLength="30" />
+          <Property Name="TENNGUOITHU" Type="nvarchar(max)" />
+          <Property Name="DONGTIENPHONG" Type="bit" />
+          <Property Name="DONGTIENBHYT" Type="bit" />
+          <Property Name="DONGTIENBHTN" Type="bit" />
+          <Property Name="TONGTIEN" Type="money" />
+          <Property Name="TIENPHONGDADONG" Type="int" />
+        </EntityType>
+        <EntityType Name="CANBO">
+          <Key>
+            <PropertyRef Name="IDCANBO" />
+          </Key>
+          <Property Name="IDCANBO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MSCB" Type="int" />
+          <Property Name="HOTEN" Type="nvarchar(max)" />
+          <Property Name="NGAYSINH" Type="nvarchar(max)" />
+          <Property Name="DIACHI" Type="nvarchar(max)" />
+          <Property Name="CMND" Type="nvarchar(max)" />
+          <Property Name="SDT" Type="nvarchar(max)" />
+          <Property Name="GIOITINH" Type="bit" />
+          <Property Name="QUOCTICH" Type="nvarchar(max)" />
+          <Property Name="DANTOC" Type="nvarchar(max)" />
+          <Property Name="NGAYVAOLAM" Type="nvarchar(max)" />
+          <Property Name="CHUCVU" Type="nvarchar(max)" />
+          <Property Name="IDUSER" Type="int" />
+        </EntityType>
+        <EntityType Name="DANHSACHSV_PHONG">
+          <Key>
+            <PropertyRef Name="IDSINHVIEN" />
+            <PropertyRef Name="IDPHONG" />
+          </Key>
+          <Property Name="IDSINHVIEN" Type="int" Nullable="false" />
+          <Property Name="IDPHONG" Type="int" Nullable="false" />
+          <Property Name="NGAYVAO" Type="varchar(max)" />
+          <Property Name="NGAYRA" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="DANHSACHSV_TIENPHONG">
+          <Key>
+            <PropertyRef Name="IDSV_TIENPHONG" />
+          </Key>
+          <Property Name="IDSV_TIENPHONG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDSINHVIEN" Type="int" />
+          <Property Name="IDPHONG" Type="int" />
+          <Property Name="TIENPHAIDONG" Type="money" />
+          <Property Name="NGAYVAO" Type="varchar(max)" />
+          <Property Name="DADONGTIENPHONG" Type="bit" />
+          <Property Name="DADONGBHYT" Type="bit" />
+          <Property Name="DADONGBHTN" Type="bit" />
+          <Property Name="IDHOCKI" Type="int" />
+          <Property Name="TIENBHYT" Type="money" />
+          <Property Name="TIENBHTN" Type="money" />
+        </EntityType>
+        <EntityType Name="GIADIEN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="GIADIEN" Type="money" Nullable="false" />
+          <Property Name="CHITIETGIA" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="GIANUOC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="GIANUOC" Type="money" Nullable="false" />
+          <Property Name="CHITIETGIA" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="HOCKI">
+          <Key>
+            <PropertyRef Name="IDHOCKI" />
+          </Key>
+          <Property Name="TENHOCKI" Type="nvarchar(max)" />
+          <Property Name="IDHOCKI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NGAYBATDAU" Type="varchar(max)" />
+          <Property Name="NGAYKETHUC" Type="varchar(max)" />
+          <Property Name="TENNAMHOC" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="IDPHONG" />
+          </Key>
+          <Property Name="TENPHONG" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="IDTOA" Type="int" Nullable="false" />
+          <Property Name="SOLUONGNGUOI" Type="int" />
+          <Property Name="LOAIPHONG" Type="int" />
+          <Property Name="SOLUONGTRONG" Type="int" />
+          <Property Name="IDPHONG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SINHVIEN">
+          <Key>
+            <PropertyRef Name="IDSINHVIEN" />
+          </Key>
+          <Property Name="NGAYSINH" Type="nvarchar(max)" />
+          <Property Name="HOTEN" Type="nvarchar(max)" />
+          <Property Name="CMND" Type="nvarchar(max)" />
+          <Property Name="SDT" Type="nvarchar(max)" />
+          <Property Name="MSSV" Type="nvarchar(max)" />
+          <Property Name="TENTRUONG" Type="nvarchar(max)" />
+          <Property Name="GIOITINH" Type="bit" />
+          <Property Name="DIACHI" Type="nvarchar(max)" />
+          <Property Name="QUOCTICH" Type="nvarchar" MaxLength="20" />
+          <Property Name="DANTOC" Type="nvarchar" MaxLength="20" />
+          <Property Name="NGAYVAOKTX" Type="nvarchar" MaxLength="20" />
+          <Property Name="NGAYRAKTX" Type="nvarchar" MaxLength="20" />
+          <Property Name="SINHVIENNAM" Type="nvarchar(max)" />
+          <Property Name="KHOA" Type="nvarchar" MaxLength="50" />
+          <Property Name="DATHUE" Type="bit" />
+          <Property Name="IDSINHVIEN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TIENDIENNUOC">
+          <Key>
+            <PropertyRef Name="IDPHONG" />
+            <PropertyRef Name="THOIGIAN" />
+          </Key>
+          <Property Name="IDPHONG" Type="int" Nullable="false" />
+          <Property Name="THOIGIAN" Type="datetime" Nullable="false" />
+          <Property Name="CHISODIEN" Type="int" Nullable="false" />
+          <Property Name="CHISONUOC" Type="int" Nullable="false" />
+          <Property Name="THANHTIEN" Type="money" Nullable="false" />
+          <Property Name="TINHTRANG" Type="bit" />
+          <Property Name="NGAYTHU" Type="varchar(max)" />
+          <Property Name="IDBL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIENTHUEPHONG">
+          <Key>
+            <PropertyRef Name="LOAIPHONG" />
+          </Key>
+          <Property Name="LOAIPHONG" Type="int" Nullable="false" />
+          <Property Name="TIENTHUE" Type="money" Nullable="false" />
+          <Property Name="SOGIUONG" Type="int" />
+        </EntityType>
+        <EntityType Name="TOA">
+          <Key>
+            <PropertyRef Name="IDTOA" />
+          </Key>
+          <Property Name="TENTOA" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="SOLUONGPHONG" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TOANAM" Type="bit" />
+          <Property Name="TSGIUONGTRONG" Type="int" />
+          <Property Name="TSGIUONG" Type="int" />
+          <Property Name="TONGDATHUE" Type="int" />
+          <Property Name="IDTOA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar(max)" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="IdRole" Type="int" Nullable="false" />
+          <Property Name="TENUSER" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_BIENLAIHOANTRAPHONG_HOCKI">
+          <End Role="HOCKI" Type="Self.HOCKI" Multiplicity="1" />
+          <End Role="BIENLAIHOANTRAPHONG" Type="Self.BIENLAIHOANTRAPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCKI">
+              <PropertyRef Name="IDHOCKI" />
+            </Principal>
+            <Dependent Role="BIENLAIHOANTRAPHONG">
+              <PropertyRef Name="IDHOCKI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAIHOANTRAPHONG_SINHVIEN">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="1" />
+          <End Role="BIENLAIHOANTRAPHONG" Type="Self.BIENLAIHOANTRAPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Principal>
+            <Dependent Role="BIENLAIHOANTRAPHONG">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITHUEPHONG_HOCKI_ID">
+          <End Role="HOCKI" Type="Self.HOCKI" Multiplicity="0..1" />
+          <End Role="BIENLAITHUEPHONG" Type="Self.BIENLAITHUEPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCKI">
+              <PropertyRef Name="IDHOCKI" />
+            </Principal>
+            <Dependent Role="BIENLAITHUEPHONG">
+              <PropertyRef Name="IDHOCKI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITHUEPHONG_PHONG">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="BIENLAITHUEPHONG" Type="Self.BIENLAITHUEPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Principal>
+            <Dependent Role="BIENLAITHUEPHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITHUEPHONG_SINHVIEN">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="0..1" />
+          <End Role="BIENLAITHUEPHONG" Type="Self.BIENLAITHUEPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Principal>
+            <Dependent Role="BIENLAITHUEPHONG">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITIENPHONG_DSSV_TIENPHONG">
+          <End Role="DANHSACHSV_TIENPHONG" Type="Self.DANHSACHSV_TIENPHONG" Multiplicity="0..1" />
+          <End Role="BIENLAITIENPHONG" Type="Self.BIENLAITIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DANHSACHSV_TIENPHONG">
+              <PropertyRef Name="IDSV_TIENPHONG" />
+            </Principal>
+            <Dependent Role="BIENLAITIENPHONG">
+              <PropertyRef Name="ID_DSSV_TIENPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITIENPHONG_HOCKI">
+          <End Role="HOCKI" Type="Self.HOCKI" Multiplicity="0..1" />
+          <End Role="BIENLAITIENPHONG" Type="Self.BIENLAITIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCKI">
+              <PropertyRef Name="IDHOCKI" />
+            </Principal>
+            <Dependent Role="BIENLAITIENPHONG">
+              <PropertyRef Name="IDHOCKI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITIENPHONG_PHONG">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="BIENLAITIENPHONG" Type="Self.BIENLAITIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Principal>
+            <Dependent Role="BIENLAITIENPHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITIENPHONG_SINHVIEN">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="0..1" />
+          <End Role="BIENLAITIENPHONG" Type="Self.BIENLAITIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Principal>
+            <Dependent Role="BIENLAITIENPHONG">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CANBO_USERS">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="CANBO" Type="Self.CANBO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CANBO">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DANHSACHSV_PHONG_PHONG">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+          <End Role="DANHSACHSV_PHONG" Type="Self.DANHSACHSV_PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Principal>
+            <Dependent Role="DANHSACHSV_PHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DANHSACHSV_PHONG_SINHVIEN">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="1" />
+          <End Role="DANHSACHSV_PHONG" Type="Self.DANHSACHSV_PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Principal>
+            <Dependent Role="DANHSACHSV_PHONG">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DANHSACHSV_TIENPHONG_DANHSACHSV_PHONG_IDPHONG">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="DANHSACHSV_TIENPHONG" Type="Self.DANHSACHSV_TIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Principal>
+            <Dependent Role="DANHSACHSV_TIENPHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DANHSACHSV_TIENPHONG_SINHVIEN">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="0..1" />
+          <End Role="DANHSACHSV_TIENPHONG" Type="Self.DANHSACHSV_TIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Principal>
+            <Dependent Role="DANHSACHSV_TIENPHONG">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DSSV_TIENPHONG_HOCKI">
+          <End Role="HOCKI" Type="Self.HOCKI" Multiplicity="0..1" />
+          <End Role="DANHSACHSV_TIENPHONG" Type="Self.DANHSACHSV_TIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCKI">
+              <PropertyRef Name="IDHOCKI" />
+            </Principal>
+            <Dependent Role="DANHSACHSV_TIENPHONG">
+              <PropertyRef Name="IDHOCKI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHONG_TIENTHUEPHONG">
+          <End Role="TIENTHUEPHONG" Type="Self.TIENTHUEPHONG" Multiplicity="0..1" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIENTHUEPHONG">
+              <PropertyRef Name="LOAIPHONG" />
+            </Principal>
+            <Dependent Role="PHONG">
+              <PropertyRef Name="LOAIPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHONG_TOA">
+          <End Role="TOA" Type="Self.TOA" Multiplicity="1" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOA">
+              <PropertyRef Name="IDTOA" />
+            </Principal>
+            <Dependent Role="PHONG">
+              <PropertyRef Name="IDTOA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIENDIENNUOC_PHONG">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+          <End Role="TIENDIENNUOC" Type="Self.TIENDIENNUOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Principal>
+            <Dependent Role="TIENDIENNUOC">
+              <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fr_IdRow_users">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLKTXModelStoreContainer">
+          <EntitySet Name="BIENLAIHOANTRAPHONG" EntityType="Self.BIENLAIHOANTRAPHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BIENLAITHUEPHONG" EntityType="Self.BIENLAITHUEPHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BIENLAITIENPHONG" EntityType="Self.BIENLAITIENPHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CANBO" EntityType="Self.CANBO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DANHSACHSV_PHONG" EntityType="Self.DANHSACHSV_PHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DANHSACHSV_TIENPHONG" EntityType="Self.DANHSACHSV_TIENPHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GIADIEN" EntityType="Self.GIADIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GIANUOC" EntityType="Self.GIANUOC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOCKI" EntityType="Self.HOCKI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SINHVIEN" EntityType="Self.SINHVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIENDIENNUOC" EntityType="Self.TIENDIENNUOC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIENTHUEPHONG" EntityType="Self.TIENTHUEPHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOA" EntityType="Self.TOA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BIENLAIHOANTRAPHONG_HOCKI" Association="Self.FK_BIENLAIHOANTRAPHONG_HOCKI">
+            <End Role="HOCKI" EntitySet="HOCKI" />
+            <End Role="BIENLAIHOANTRAPHONG" EntitySet="BIENLAIHOANTRAPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAIHOANTRAPHONG_SINHVIEN" Association="Self.FK_BIENLAIHOANTRAPHONG_SINHVIEN">
+            <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+            <End Role="BIENLAIHOANTRAPHONG" EntitySet="BIENLAIHOANTRAPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITHUEPHONG_HOCKI_ID" Association="Self.FK_BIENLAITHUEPHONG_HOCKI_ID">
+            <End Role="HOCKI" EntitySet="HOCKI" />
+            <End Role="BIENLAITHUEPHONG" EntitySet="BIENLAITHUEPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITHUEPHONG_PHONG" Association="Self.FK_BIENLAITHUEPHONG_PHONG">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="BIENLAITHUEPHONG" EntitySet="BIENLAITHUEPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITHUEPHONG_SINHVIEN" Association="Self.FK_BIENLAITHUEPHONG_SINHVIEN">
+            <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+            <End Role="BIENLAITHUEPHONG" EntitySet="BIENLAITHUEPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITIENPHONG_DSSV_TIENPHONG" Association="Self.FK_BIENLAITIENPHONG_DSSV_TIENPHONG">
+            <End Role="DANHSACHSV_TIENPHONG" EntitySet="DANHSACHSV_TIENPHONG" />
+            <End Role="BIENLAITIENPHONG" EntitySet="BIENLAITIENPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITIENPHONG_HOCKI" Association="Self.FK_BIENLAITIENPHONG_HOCKI">
+            <End Role="HOCKI" EntitySet="HOCKI" />
+            <End Role="BIENLAITIENPHONG" EntitySet="BIENLAITIENPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITIENPHONG_PHONG" Association="Self.FK_BIENLAITIENPHONG_PHONG">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="BIENLAITIENPHONG" EntitySet="BIENLAITIENPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITIENPHONG_SINHVIEN" Association="Self.FK_BIENLAITIENPHONG_SINHVIEN">
+            <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+            <End Role="BIENLAITIENPHONG" EntitySet="BIENLAITIENPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CANBO_USERS" Association="Self.FK_CANBO_USERS">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CANBO" EntitySet="CANBO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DANHSACHSV_PHONG_PHONG" Association="Self.FK_DANHSACHSV_PHONG_PHONG">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="DANHSACHSV_PHONG" EntitySet="DANHSACHSV_PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DANHSACHSV_PHONG_SINHVIEN" Association="Self.FK_DANHSACHSV_PHONG_SINHVIEN">
+            <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+            <End Role="DANHSACHSV_PHONG" EntitySet="DANHSACHSV_PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DANHSACHSV_TIENPHONG_DANHSACHSV_PHONG_IDPHONG" Association="Self.FK_DANHSACHSV_TIENPHONG_DANHSACHSV_PHONG_IDPHONG">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="DANHSACHSV_TIENPHONG" EntitySet="DANHSACHSV_TIENPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DANHSACHSV_TIENPHONG_SINHVIEN" Association="Self.FK_DANHSACHSV_TIENPHONG_SINHVIEN">
+            <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+            <End Role="DANHSACHSV_TIENPHONG" EntitySet="DANHSACHSV_TIENPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DSSV_TIENPHONG_HOCKI" Association="Self.FK_DSSV_TIENPHONG_HOCKI">
+            <End Role="HOCKI" EntitySet="HOCKI" />
+            <End Role="DANHSACHSV_TIENPHONG" EntitySet="DANHSACHSV_TIENPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHONG_TIENTHUEPHONG" Association="Self.FK_PHONG_TIENTHUEPHONG">
+            <End Role="TIENTHUEPHONG" EntitySet="TIENTHUEPHONG" />
+            <End Role="PHONG" EntitySet="PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHONG_TOA" Association="Self.FK_PHONG_TOA">
+            <End Role="TOA" EntitySet="TOA" />
+            <End Role="PHONG" EntitySet="PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIENDIENNUOC_PHONG" Association="Self.FK_TIENDIENNUOC_PHONG">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="TIENDIENNUOC" EntitySet="TIENDIENNUOC" />
+          </AssociationSet>
+          <AssociationSet Name="fr_IdRow_users" Association="Self.fr_IdRow_users">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLKTXModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BIENLAIHOANTRAPHONG">
+          <Key>
+            <PropertyRef Name="IDBL" />
+          </Key>
+          <Property Name="IDBL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDSINHVIEN" Type="Int32" Nullable="false" />
+          <Property Name="IDHOCKI" Type="Int32" Nullable="false" />
+          <Property Name="NGAYTRAPHONG" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TIENHOANTRA" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="NGUOITHUNGAN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TENSINHVIEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HOCKI" Relationship="Self.FK_BIENLAIHOANTRAPHONG_HOCKI" FromRole="BIENLAIHOANTRAPHONG" ToRole="HOCKI" />
+          <NavigationProperty Name="SINHVIEN" Relationship="Self.FK_BIENLAIHOANTRAPHONG_SINHVIEN" FromRole="BIENLAIHOANTRAPHONG" ToRole="SINHVIEN" />
+        </EntityType>
+        <EntityType Name="BIENLAITHUEPHONG">
+          <Key>
+            <PropertyRef Name="IDVL" />
+          </Key>
+          <Property Name="IDVL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDSINHVIEN" Type="Int32" />
+          <Property Name="IDPHONG" Type="Int32" />
+          <Property Name="TRANGTHAI" Type="Boolean" />
+          <Property Name="TENNHAPHONG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LOAIPHONG" Type="Int32" />
+          <Property Name="DADONGTIENPHONG" Type="Boolean" />
+          <Property Name="IDHOCKI" Type="Int32" />
+          <Property Name="TENHOCKI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYVAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYTRAPHONG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HOCKI" Relationship="Self.FK_BIENLAITHUEPHONG_HOCKI_ID" FromRole="BIENLAITHUEPHONG" ToRole="HOCKI" />
+          <NavigationProperty Name="PHONG" Relationship="Self.FK_BIENLAITHUEPHONG_PHONG" FromRole="BIENLAITHUEPHONG" ToRole="PHONG" />
+          <NavigationProperty Name="SINHVIEN" Relationship="Self.FK_BIENLAITHUEPHONG_SINHVIEN" FromRole="BIENLAITHUEPHONG" ToRole="SINHVIEN" />
+        </EntityType>
+        <EntityType Name="BIENLAITIENPHONG">
+          <Key>
+            <PropertyRef Name="IDBL" />
+          </Key>
+          <Property Name="IDBL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDSINHVIEN" Type="Int32" />
+          <Property Name="ID_DSSV_TIENPHONG" Type="Int32" />
+          <Property Name="IDHOCKI" Type="Int32" />
+          <Property Name="IDPHONG" Type="Int32" />
+          <Property Name="NGAYINBL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TENNGUOITHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DONGTIENPHONG" Type="Boolean" />
+          <Property Name="DONGTIENBHYT" Type="Boolean" />
+          <Property Name="DONGTIENBHTN" Type="Boolean" />
+          <Property Name="TONGTIEN" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TIENPHONGDADONG" Type="Int32" />
+          <NavigationProperty Name="DANHSACHSV_TIENPHONG" Relationship="Self.FK_BIENLAITIENPHONG_DSSV_TIENPHONG" FromRole="BIENLAITIENPHONG" ToRole="DANHSACHSV_TIENPHONG" />
+          <NavigationProperty Name="HOCKI" Relationship="Self.FK_BIENLAITIENPHONG_HOCKI" FromRole="BIENLAITIENPHONG" ToRole="HOCKI" />
+          <NavigationProperty Name="PHONG" Relationship="Self.FK_BIENLAITIENPHONG_PHONG" FromRole="BIENLAITIENPHONG" ToRole="PHONG" />
+          <NavigationProperty Name="SINHVIEN" Relationship="Self.FK_BIENLAITIENPHONG_SINHVIEN" FromRole="BIENLAITIENPHONG" ToRole="SINHVIEN" />
+        </EntityType>
+        <EntityType Name="CANBO">
+          <Key>
+            <PropertyRef Name="IDCANBO" />
+          </Key>
+          <Property Name="IDCANBO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MSCB" Type="Int32" />
+          <Property Name="HOTEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYSINH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CMND" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GIOITINH" Type="Boolean" />
+          <Property Name="QUOCTICH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DANTOC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYVAOLAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CHUCVU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDUSER" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_CANBO_USERS" FromRole="CANBO" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="DANHSACHSV_PHONG">
+          <Key>
+            <PropertyRef Name="IDSINHVIEN" />
+            <PropertyRef Name="IDPHONG" />
+          </Key>
+          <Property Name="IDSINHVIEN" Type="Int32" Nullable="false" />
+          <Property Name="IDPHONG" Type="Int32" Nullable="false" />
+          <Property Name="NGAYVAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYRA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PHONG" Relationship="Self.FK_DANHSACHSV_PHONG_PHONG" FromRole="DANHSACHSV_PHONG" ToRole="PHONG" />
+          <NavigationProperty Name="SINHVIEN" Relationship="Self.FK_DANHSACHSV_PHONG_SINHVIEN" FromRole="DANHSACHSV_PHONG" ToRole="SINHVIEN" />
+        </EntityType>
+        <EntityType Name="DANHSACHSV_TIENPHONG">
+          <Key>
+            <PropertyRef Name="IDSV_TIENPHONG" />
+          </Key>
+          <Property Name="IDSV_TIENPHONG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDSINHVIEN" Type="Int32" />
+          <Property Name="IDPHONG" Type="Int32" />
+          <Property Name="TIENPHAIDONG" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NGAYVAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DADONGTIENPHONG" Type="Boolean" />
+          <Property Name="DADONGBHYT" Type="Boolean" />
+          <Property Name="DADONGBHTN" Type="Boolean" />
+          <Property Name="IDHOCKI" Type="Int32" />
+          <Property Name="TIENBHYT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TIENBHTN" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="BIENLAITIENPHONGs" Relationship="Self.FK_BIENLAITIENPHONG_DSSV_TIENPHONG" FromRole="DANHSACHSV_TIENPHONG" ToRole="BIENLAITIENPHONG" />
+          <NavigationProperty Name="PHONG" Relationship="Self.FK_DANHSACHSV_TIENPHONG_DANHSACHSV_PHONG_IDPHONG" FromRole="DANHSACHSV_TIENPHONG" ToRole="PHONG" />
+          <NavigationProperty Name="SINHVIEN" Relationship="Self.FK_DANHSACHSV_TIENPHONG_SINHVIEN" FromRole="DANHSACHSV_TIENPHONG" ToRole="SINHVIEN" />
+          <NavigationProperty Name="HOCKI" Relationship="Self.FK_DSSV_TIENPHONG_HOCKI" FromRole="DANHSACHSV_TIENPHONG" ToRole="HOCKI" />
+        </EntityType>
+        <EntityType Name="GIADIEN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="GIADIEN1" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CHITIETGIA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GIANUOC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="GIANUOC1" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CHITIETGIA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HOCKI">
+          <Key>
+            <PropertyRef Name="IDHOCKI" />
+          </Key>
+          <Property Name="TENHOCKI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDHOCKI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NGAYBATDAU" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYKETHUC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TENNAMHOC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BIENLAIHOANTRAPHONGs" Relationship="Self.FK_BIENLAIHOANTRAPHONG_HOCKI" FromRole="HOCKI" ToRole="BIENLAIHOANTRAPHONG" />
+          <NavigationProperty Name="BIENLAITHUEPHONGs" Relationship="Self.FK_BIENLAITHUEPHONG_HOCKI_ID" FromRole="HOCKI" ToRole="BIENLAITHUEPHONG" />
+          <NavigationProperty Name="BIENLAITIENPHONGs" Relationship="Self.FK_BIENLAITIENPHONG_HOCKI" FromRole="HOCKI" ToRole="BIENLAITIENPHONG" />
+          <NavigationProperty Name="DANHSACHSV_TIENPHONG" Relationship="Self.FK_DSSV_TIENPHONG_HOCKI" FromRole="HOCKI" ToRole="DANHSACHSV_TIENPHONG" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="IDPHONG" />
+          </Key>
+          <Property Name="TENPHONG" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDTOA" Type="Int32" Nullable="false" />
+          <Property Name="SOLUONGNGUOI" Type="Int32" />
+          <Property Name="LOAIPHONG" Type="Int32" />
+          <Property Name="SOLUONGTRONG" Type="Int32" />
+          <Property Name="IDPHONG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="BIENLAITHUEPHONGs" Relationship="Self.FK_BIENLAITHUEPHONG_PHONG" FromRole="PHONG" ToRole="BIENLAITHUEPHONG" />
+          <NavigationProperty Name="BIENLAITIENPHONGs" Relationship="Self.FK_BIENLAITIENPHONG_PHONG" FromRole="PHONG" ToRole="BIENLAITIENPHONG" />
+          <NavigationProperty Name="DANHSACHSV_PHONG" Relationship="Self.FK_DANHSACHSV_PHONG_PHONG" FromRole="PHONG" ToRole="DANHSACHSV_PHONG" />
+          <NavigationProperty Name="DANHSACHSV_TIENPHONG" Relationship="Self.FK_DANHSACHSV_TIENPHONG_DANHSACHSV_PHONG_IDPHONG" FromRole="PHONG" ToRole="DANHSACHSV_TIENPHONG" />
+          <NavigationProperty Name="TIENTHUEPHONG" Relationship="Self.FK_PHONG_TIENTHUEPHONG" FromRole="PHONG" ToRole="TIENTHUEPHONG" />
+          <NavigationProperty Name="TOA" Relationship="Self.FK_PHONG_TOA" FromRole="PHONG" ToRole="TOA" />
+          <NavigationProperty Name="TIENDIENNUOCs" Relationship="Self.FK_TIENDIENNUOC_PHONG" FromRole="PHONG" ToRole="TIENDIENNUOC" />
+        </EntityType>
+        <EntityType Name="SINHVIEN">
+          <Key>
+            <PropertyRef Name="IDSINHVIEN" />
+          </Key>
+          <Property Name="NGAYSINH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HOTEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CMND" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MSSV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TENTRUONG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GIOITINH" Type="Boolean" />
+          <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QUOCTICH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DANTOC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYVAOKTX" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYRAKTX" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SINHVIENNAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KHOA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DATHUE" Type="Boolean" />
+          <Property Name="IDSINHVIEN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="BIENLAIHOANTRAPHONGs" Relationship="Self.FK_BIENLAIHOANTRAPHONG_SINHVIEN" FromRole="SINHVIEN" ToRole="BIENLAIHOANTRAPHONG" />
+          <NavigationProperty Name="BIENLAITHUEPHONGs" Relationship="Self.FK_BIENLAITHUEPHONG_SINHVIEN" FromRole="SINHVIEN" ToRole="BIENLAITHUEPHONG" />
+          <NavigationProperty Name="BIENLAITIENPHONGs" Relationship="Self.FK_BIENLAITIENPHONG_SINHVIEN" FromRole="SINHVIEN" ToRole="BIENLAITIENPHONG" />
+          <NavigationProperty Name="DANHSACHSV_PHONG" Relationship="Self.FK_DANHSACHSV_PHONG_SINHVIEN" FromRole="SINHVIEN" ToRole="DANHSACHSV_PHONG" />
+          <NavigationProperty Name="DANHSACHSV_TIENPHONG" Relationship="Self.FK_DANHSACHSV_TIENPHONG_SINHVIEN" FromRole="SINHVIEN" ToRole="DANHSACHSV_TIENPHONG" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TIENDIENNUOC">
+          <Key>
+            <PropertyRef Name="IDPHONG" />
+            <PropertyRef Name="THOIGIAN" />
+          </Key>
+          <Property Name="IDPHONG" Type="Int32" Nullable="false" />
+          <Property Name="THOIGIAN" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CHISODIEN" Type="Int32" Nullable="false" />
+          <Property Name="CHISONUOC" Type="Int32" Nullable="false" />
+          <Property Name="THANHTIEN" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TINHTRANG" Type="Boolean" />
+          <Property Name="NGAYTHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDBL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="PHONG" Relationship="Self.FK_TIENDIENNUOC_PHONG" FromRole="TIENDIENNUOC" ToRole="PHONG" />
+        </EntityType>
+        <EntityType Name="TIENTHUEPHONG">
+          <Key>
+            <PropertyRef Name="LOAIPHONG" />
+          </Key>
+          <Property Name="LOAIPHONG" Type="Int32" Nullable="false" />
+          <Property Name="TIENTHUE" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="SOGIUONG" Type="Int32" />
+          <NavigationProperty Name="PHONGs" Relationship="Self.FK_PHONG_TIENTHUEPHONG" FromRole="TIENTHUEPHONG" ToRole="PHONG" />
+        </EntityType>
+        <EntityType Name="TOA">
+          <Key>
+            <PropertyRef Name="IDTOA" />
+          </Key>
+          <Property Name="TENTOA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SOLUONGPHONG" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TOANAM" Type="Boolean" />
+          <Property Name="TSGIUONGTRONG" Type="Int32" />
+          <Property Name="TSGIUONG" Type="Int32" />
+          <Property Name="TONGDATHUE" Type="Int32" />
+          <Property Name="IDTOA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="PHONGs" Relationship="Self.FK_PHONG_TOA" FromRole="TOA" ToRole="PHONG" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.fr_IdRow_users" FromRole="UserRole" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <Property Name="TENUSER" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CANBOes" Relationship="Self.FK_CANBO_USERS" FromRole="Users" ToRole="CANBO" />
+          <NavigationProperty Name="UserRole" Relationship="Self.fr_IdRow_users" FromRole="Users" ToRole="UserRole" />
+        </EntityType>
+        <Association Name="FK_BIENLAIHOANTRAPHONG_HOCKI">
+          <End Role="HOCKI" Type="Self.HOCKI" Multiplicity="1" />
+          <End Role="BIENLAIHOANTRAPHONG" Type="Self.BIENLAIHOANTRAPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCKI">
+              <PropertyRef Name="IDHOCKI" />
+            </Principal>
+            <Dependent Role="BIENLAIHOANTRAPHONG">
+              <PropertyRef Name="IDHOCKI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAIHOANTRAPHONG_SINHVIEN">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="1" />
+          <End Role="BIENLAIHOANTRAPHONG" Type="Self.BIENLAIHOANTRAPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Principal>
+            <Dependent Role="BIENLAIHOANTRAPHONG">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITHUEPHONG_HOCKI_ID">
+          <End Role="HOCKI" Type="Self.HOCKI" Multiplicity="0..1" />
+          <End Role="BIENLAITHUEPHONG" Type="Self.BIENLAITHUEPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCKI">
+              <PropertyRef Name="IDHOCKI" />
+            </Principal>
+            <Dependent Role="BIENLAITHUEPHONG">
+              <PropertyRef Name="IDHOCKI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITHUEPHONG_PHONG">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="BIENLAITHUEPHONG" Type="Self.BIENLAITHUEPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Principal>
+            <Dependent Role="BIENLAITHUEPHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITHUEPHONG_SINHVIEN">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="0..1" />
+          <End Role="BIENLAITHUEPHONG" Type="Self.BIENLAITHUEPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Principal>
+            <Dependent Role="BIENLAITHUEPHONG">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITIENPHONG_DSSV_TIENPHONG">
+          <End Role="DANHSACHSV_TIENPHONG" Type="Self.DANHSACHSV_TIENPHONG" Multiplicity="0..1" />
+          <End Role="BIENLAITIENPHONG" Type="Self.BIENLAITIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DANHSACHSV_TIENPHONG">
+              <PropertyRef Name="IDSV_TIENPHONG" />
+            </Principal>
+            <Dependent Role="BIENLAITIENPHONG">
+              <PropertyRef Name="ID_DSSV_TIENPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITIENPHONG_HOCKI">
+          <End Role="HOCKI" Type="Self.HOCKI" Multiplicity="0..1" />
+          <End Role="BIENLAITIENPHONG" Type="Self.BIENLAITIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCKI">
+              <PropertyRef Name="IDHOCKI" />
+            </Principal>
+            <Dependent Role="BIENLAITIENPHONG">
+              <PropertyRef Name="IDHOCKI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITIENPHONG_PHONG">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="BIENLAITIENPHONG" Type="Self.BIENLAITIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Principal>
+            <Dependent Role="BIENLAITIENPHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BIENLAITIENPHONG_SINHVIEN">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="0..1" />
+          <End Role="BIENLAITIENPHONG" Type="Self.BIENLAITIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Principal>
+            <Dependent Role="BIENLAITIENPHONG">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CANBO_USERS">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="CANBO" Type="Self.CANBO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CANBO">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DANHSACHSV_PHONG_PHONG">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+          <End Role="DANHSACHSV_PHONG" Type="Self.DANHSACHSV_PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Principal>
+            <Dependent Role="DANHSACHSV_PHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DANHSACHSV_PHONG_SINHVIEN">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="1" />
+          <End Role="DANHSACHSV_PHONG" Type="Self.DANHSACHSV_PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Principal>
+            <Dependent Role="DANHSACHSV_PHONG">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DANHSACHSV_TIENPHONG_DANHSACHSV_PHONG_IDPHONG">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="DANHSACHSV_TIENPHONG" Type="Self.DANHSACHSV_TIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Principal>
+            <Dependent Role="DANHSACHSV_TIENPHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DANHSACHSV_TIENPHONG_SINHVIEN">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="0..1" />
+          <End Role="DANHSACHSV_TIENPHONG" Type="Self.DANHSACHSV_TIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Principal>
+            <Dependent Role="DANHSACHSV_TIENPHONG">
+              <PropertyRef Name="IDSINHVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DSSV_TIENPHONG_HOCKI">
+          <End Role="HOCKI" Type="Self.HOCKI" Multiplicity="0..1" />
+          <End Role="DANHSACHSV_TIENPHONG" Type="Self.DANHSACHSV_TIENPHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCKI">
+              <PropertyRef Name="IDHOCKI" />
+            </Principal>
+            <Dependent Role="DANHSACHSV_TIENPHONG">
+              <PropertyRef Name="IDHOCKI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHONG_TIENTHUEPHONG">
+          <End Role="TIENTHUEPHONG" Type="Self.TIENTHUEPHONG" Multiplicity="0..1" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIENTHUEPHONG">
+              <PropertyRef Name="LOAIPHONG" />
+            </Principal>
+            <Dependent Role="PHONG">
+              <PropertyRef Name="LOAIPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHONG_TOA">
+          <End Role="TOA" Type="Self.TOA" Multiplicity="1" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOA">
+              <PropertyRef Name="IDTOA" />
+            </Principal>
+            <Dependent Role="PHONG">
+              <PropertyRef Name="IDTOA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIENDIENNUOC_PHONG">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+          <End Role="TIENDIENNUOC" Type="Self.TIENDIENNUOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="IDPHONG" />
+            </Principal>
+            <Dependent Role="TIENDIENNUOC">
+              <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fr_IdRow_users">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLKTXEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BIENLAIHOANTRAPHONGs" EntityType="Self.BIENLAIHOANTRAPHONG" />
+          <EntitySet Name="BIENLAITHUEPHONGs" EntityType="Self.BIENLAITHUEPHONG" />
+          <EntitySet Name="BIENLAITIENPHONGs" EntityType="Self.BIENLAITIENPHONG" />
+          <EntitySet Name="CANBOes" EntityType="Self.CANBO" />
+          <EntitySet Name="DANHSACHSV_PHONG" EntityType="Self.DANHSACHSV_PHONG" />
+          <EntitySet Name="DANHSACHSV_TIENPHONG" EntityType="Self.DANHSACHSV_TIENPHONG" />
+          <EntitySet Name="GIADIENs" EntityType="Self.GIADIEN" />
+          <EntitySet Name="GIANUOCs" EntityType="Self.GIANUOC" />
+          <EntitySet Name="HOCKIs" EntityType="Self.HOCKI" />
+          <EntitySet Name="PHONGs" EntityType="Self.PHONG" />
+          <EntitySet Name="SINHVIENs" EntityType="Self.SINHVIEN" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TIENDIENNUOCs" EntityType="Self.TIENDIENNUOC" />
+          <EntitySet Name="TIENTHUEPHONGs" EntityType="Self.TIENTHUEPHONG" />
+          <EntitySet Name="TOAs" EntityType="Self.TOA" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_BIENLAIHOANTRAPHONG_HOCKI" Association="Self.FK_BIENLAIHOANTRAPHONG_HOCKI">
+            <End Role="HOCKI" EntitySet="HOCKIs" />
+            <End Role="BIENLAIHOANTRAPHONG" EntitySet="BIENLAIHOANTRAPHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAIHOANTRAPHONG_SINHVIEN" Association="Self.FK_BIENLAIHOANTRAPHONG_SINHVIEN">
+            <End Role="SINHVIEN" EntitySet="SINHVIENs" />
+            <End Role="BIENLAIHOANTRAPHONG" EntitySet="BIENLAIHOANTRAPHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITHUEPHONG_HOCKI_ID" Association="Self.FK_BIENLAITHUEPHONG_HOCKI_ID">
+            <End Role="HOCKI" EntitySet="HOCKIs" />
+            <End Role="BIENLAITHUEPHONG" EntitySet="BIENLAITHUEPHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITHUEPHONG_PHONG" Association="Self.FK_BIENLAITHUEPHONG_PHONG">
+            <End Role="PHONG" EntitySet="PHONGs" />
+            <End Role="BIENLAITHUEPHONG" EntitySet="BIENLAITHUEPHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITHUEPHONG_SINHVIEN" Association="Self.FK_BIENLAITHUEPHONG_SINHVIEN">
+            <End Role="SINHVIEN" EntitySet="SINHVIENs" />
+            <End Role="BIENLAITHUEPHONG" EntitySet="BIENLAITHUEPHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITIENPHONG_DSSV_TIENPHONG" Association="Self.FK_BIENLAITIENPHONG_DSSV_TIENPHONG">
+            <End Role="DANHSACHSV_TIENPHONG" EntitySet="DANHSACHSV_TIENPHONG" />
+            <End Role="BIENLAITIENPHONG" EntitySet="BIENLAITIENPHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITIENPHONG_HOCKI" Association="Self.FK_BIENLAITIENPHONG_HOCKI">
+            <End Role="HOCKI" EntitySet="HOCKIs" />
+            <End Role="BIENLAITIENPHONG" EntitySet="BIENLAITIENPHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITIENPHONG_PHONG" Association="Self.FK_BIENLAITIENPHONG_PHONG">
+            <End Role="PHONG" EntitySet="PHONGs" />
+            <End Role="BIENLAITIENPHONG" EntitySet="BIENLAITIENPHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BIENLAITIENPHONG_SINHVIEN" Association="Self.FK_BIENLAITIENPHONG_SINHVIEN">
+            <End Role="SINHVIEN" EntitySet="SINHVIENs" />
+            <End Role="BIENLAITIENPHONG" EntitySet="BIENLAITIENPHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CANBO_USERS" Association="Self.FK_CANBO_USERS">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CANBO" EntitySet="CANBOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DANHSACHSV_PHONG_PHONG" Association="Self.FK_DANHSACHSV_PHONG_PHONG">
+            <End Role="PHONG" EntitySet="PHONGs" />
+            <End Role="DANHSACHSV_PHONG" EntitySet="DANHSACHSV_PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DANHSACHSV_PHONG_SINHVIEN" Association="Self.FK_DANHSACHSV_PHONG_SINHVIEN">
+            <End Role="SINHVIEN" EntitySet="SINHVIENs" />
+            <End Role="DANHSACHSV_PHONG" EntitySet="DANHSACHSV_PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DANHSACHSV_TIENPHONG_DANHSACHSV_PHONG_IDPHONG" Association="Self.FK_DANHSACHSV_TIENPHONG_DANHSACHSV_PHONG_IDPHONG">
+            <End Role="PHONG" EntitySet="PHONGs" />
+            <End Role="DANHSACHSV_TIENPHONG" EntitySet="DANHSACHSV_TIENPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DANHSACHSV_TIENPHONG_SINHVIEN" Association="Self.FK_DANHSACHSV_TIENPHONG_SINHVIEN">
+            <End Role="SINHVIEN" EntitySet="SINHVIENs" />
+            <End Role="DANHSACHSV_TIENPHONG" EntitySet="DANHSACHSV_TIENPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DSSV_TIENPHONG_HOCKI" Association="Self.FK_DSSV_TIENPHONG_HOCKI">
+            <End Role="HOCKI" EntitySet="HOCKIs" />
+            <End Role="DANHSACHSV_TIENPHONG" EntitySet="DANHSACHSV_TIENPHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHONG_TIENTHUEPHONG" Association="Self.FK_PHONG_TIENTHUEPHONG">
+            <End Role="TIENTHUEPHONG" EntitySet="TIENTHUEPHONGs" />
+            <End Role="PHONG" EntitySet="PHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHONG_TOA" Association="Self.FK_PHONG_TOA">
+            <End Role="TOA" EntitySet="TOAs" />
+            <End Role="PHONG" EntitySet="PHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIENDIENNUOC_PHONG" Association="Self.FK_TIENDIENNUOC_PHONG">
+            <End Role="PHONG" EntitySet="PHONGs" />
+            <End Role="TIENDIENNUOC" EntitySet="TIENDIENNUOCs" />
+          </AssociationSet>
+          <AssociationSet Name="fr_IdRow_users" Association="Self.fr_IdRow_users">
+            <End Role="UserRole" EntitySet="UserRoles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLKTXModelStoreContainer" CdmEntityContainer="QLKTXEntities3">
+          <EntitySetMapping Name="BIENLAIHOANTRAPHONGs">
+            <EntityTypeMapping TypeName="QLKTXModel.BIENLAIHOANTRAPHONG">
+              <MappingFragment StoreEntitySet="BIENLAIHOANTRAPHONG">
+                <ScalarProperty Name="IDBL" ColumnName="IDBL" />
+                <ScalarProperty Name="IDSINHVIEN" ColumnName="IDSINHVIEN" />
+                <ScalarProperty Name="IDHOCKI" ColumnName="IDHOCKI" />
+                <ScalarProperty Name="NGAYTRAPHONG" ColumnName="NGAYTRAPHONG" />
+                <ScalarProperty Name="TIENHOANTRA" ColumnName="TIENHOANTRA" />
+                <ScalarProperty Name="NGUOITHUNGAN" ColumnName="NGUOITHUNGAN" />
+                <ScalarProperty Name="TENSINHVIEN" ColumnName="TENSINHVIEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BIENLAITHUEPHONGs">
+            <EntityTypeMapping TypeName="QLKTXModel.BIENLAITHUEPHONG">
+              <MappingFragment StoreEntitySet="BIENLAITHUEPHONG">
+                <ScalarProperty Name="IDVL" ColumnName="IDVL" />
+                <ScalarProperty Name="IDSINHVIEN" ColumnName="IDSINHVIEN" />
+                <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="TENNHAPHONG" ColumnName="TENNHAPHONG" />
+                <ScalarProperty Name="LOAIPHONG" ColumnName="LOAIPHONG" />
+                <ScalarProperty Name="DADONGTIENPHONG" ColumnName="DADONGTIENPHONG" />
+                <ScalarProperty Name="IDHOCKI" ColumnName="IDHOCKI" />
+                <ScalarProperty Name="TENHOCKI" ColumnName="TENHOCKI" />
+                <ScalarProperty Name="NGAYVAO" ColumnName="NGAYVAO" />
+                <ScalarProperty Name="NGAYTRAPHONG" ColumnName="NGAYTRAPHONG" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BIENLAITIENPHONGs">
+            <EntityTypeMapping TypeName="QLKTXModel.BIENLAITIENPHONG">
+              <MappingFragment StoreEntitySet="BIENLAITIENPHONG">
+                <ScalarProperty Name="IDBL" ColumnName="IDBL" />
+                <ScalarProperty Name="IDSINHVIEN" ColumnName="IDSINHVIEN" />
+                <ScalarProperty Name="ID_DSSV_TIENPHONG" ColumnName="ID_DSSV_TIENPHONG" />
+                <ScalarProperty Name="IDHOCKI" ColumnName="IDHOCKI" />
+                <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+                <ScalarProperty Name="NGAYINBL" ColumnName="NGAYINBL" />
+                <ScalarProperty Name="TENNGUOITHU" ColumnName="TENNGUOITHU" />
+                <ScalarProperty Name="DONGTIENPHONG" ColumnName="DONGTIENPHONG" />
+                <ScalarProperty Name="DONGTIENBHYT" ColumnName="DONGTIENBHYT" />
+                <ScalarProperty Name="DONGTIENBHTN" ColumnName="DONGTIENBHTN" />
+                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+                <ScalarProperty Name="TIENPHONGDADONG" ColumnName="TIENPHONGDADONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CANBOes">
+            <EntityTypeMapping TypeName="QLKTXModel.CANBO">
+              <MappingFragment StoreEntitySet="CANBO">
+                <ScalarProperty Name="IDCANBO" ColumnName="IDCANBO" />
+                <ScalarProperty Name="MSCB" ColumnName="MSCB" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
+                <ScalarProperty Name="DANTOC" ColumnName="DANTOC" />
+                <ScalarProperty Name="NGAYVAOLAM" ColumnName="NGAYVAOLAM" />
+                <ScalarProperty Name="CHUCVU" ColumnName="CHUCVU" />
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DANHSACHSV_PHONG">
+            <EntityTypeMapping TypeName="QLKTXModel.DANHSACHSV_PHONG">
+              <MappingFragment StoreEntitySet="DANHSACHSV_PHONG">
+                <ScalarProperty Name="IDSINHVIEN" ColumnName="IDSINHVIEN" />
+                <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+                <ScalarProperty Name="NGAYVAO" ColumnName="NGAYVAO" />
+                <ScalarProperty Name="NGAYRA" ColumnName="NGAYRA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DANHSACHSV_TIENPHONG">
+            <EntityTypeMapping TypeName="QLKTXModel.DANHSACHSV_TIENPHONG">
+              <MappingFragment StoreEntitySet="DANHSACHSV_TIENPHONG">
+                <ScalarProperty Name="IDSV_TIENPHONG" ColumnName="IDSV_TIENPHONG" />
+                <ScalarProperty Name="IDSINHVIEN" ColumnName="IDSINHVIEN" />
+                <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+                <ScalarProperty Name="TIENPHAIDONG" ColumnName="TIENPHAIDONG" />
+                <ScalarProperty Name="NGAYVAO" ColumnName="NGAYVAO" />
+                <ScalarProperty Name="DADONGTIENPHONG" ColumnName="DADONGTIENPHONG" />
+                <ScalarProperty Name="DADONGBHYT" ColumnName="DADONGBHYT" />
+                <ScalarProperty Name="DADONGBHTN" ColumnName="DADONGBHTN" />
+                <ScalarProperty Name="IDHOCKI" ColumnName="IDHOCKI" />
+                <ScalarProperty Name="TIENBHYT" ColumnName="TIENBHYT" />
+                <ScalarProperty Name="TIENBHTN" ColumnName="TIENBHTN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GIADIENs">
+            <EntityTypeMapping TypeName="QLKTXModel.GIADIEN">
+              <MappingFragment StoreEntitySet="GIADIEN">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GIADIEN1" ColumnName="GIADIEN" />
+                <ScalarProperty Name="CHITIETGIA" ColumnName="CHITIETGIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GIANUOCs">
+            <EntityTypeMapping TypeName="QLKTXModel.GIANUOC">
+              <MappingFragment StoreEntitySet="GIANUOC">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GIANUOC1" ColumnName="GIANUOC" />
+                <ScalarProperty Name="CHITIETGIA" ColumnName="CHITIETGIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOCKIs">
+            <EntityTypeMapping TypeName="QLKTXModel.HOCKI">
+              <MappingFragment StoreEntitySet="HOCKI">
+                <ScalarProperty Name="TENHOCKI" ColumnName="TENHOCKI" />
+                <ScalarProperty Name="IDHOCKI" ColumnName="IDHOCKI" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETHUC" ColumnName="NGAYKETHUC" />
+                <ScalarProperty Name="TENNAMHOC" ColumnName="TENNAMHOC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHONGs">
+            <EntityTypeMapping TypeName="QLKTXModel.PHONG">
+              <MappingFragment StoreEntitySet="PHONG">
+                <ScalarProperty Name="TENPHONG" ColumnName="TENPHONG" />
+                <ScalarProperty Name="IDTOA" ColumnName="IDTOA" />
+                <ScalarProperty Name="SOLUONGNGUOI" ColumnName="SOLUONGNGUOI" />
+                <ScalarProperty Name="LOAIPHONG" ColumnName="LOAIPHONG" />
+                <ScalarProperty Name="SOLUONGTRONG" ColumnName="SOLUONGTRONG" />
+                <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SINHVIENs">
+            <EntityTypeMapping TypeName="QLKTXModel.SINHVIEN">
+              <MappingFragment StoreEntitySet="SINHVIEN">
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="MSSV" ColumnName="MSSV" />
+                <ScalarProperty Name="TENTRUONG" ColumnName="TENTRUONG" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
+                <ScalarProperty Name="DANTOC" ColumnName="DANTOC" />
+                <ScalarProperty Name="NGAYVAOKTX" ColumnName="NGAYVAOKTX" />
+                <ScalarProperty Name="NGAYRAKTX" ColumnName="NGAYRAKTX" />
+                <ScalarProperty Name="SINHVIENNAM" ColumnName="SINHVIENNAM" />
+                <ScalarProperty Name="KHOA" ColumnName="KHOA" />
+                <ScalarProperty Name="DATHUE" ColumnName="DATHUE" />
+                <ScalarProperty Name="IDSINHVIEN" ColumnName="IDSINHVIEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLKTXModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIENDIENNUOCs">
+            <EntityTypeMapping TypeName="QLKTXModel.TIENDIENNUOC">
+              <MappingFragment StoreEntitySet="TIENDIENNUOC">
+                <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+                <ScalarProperty Name="THOIGIAN" ColumnName="THOIGIAN" />
+                <ScalarProperty Name="CHISODIEN" ColumnName="CHISODIEN" />
+                <ScalarProperty Name="CHISONUOC" ColumnName="CHISONUOC" />
+                <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="NGAYTHU" ColumnName="NGAYTHU" />
+                <ScalarProperty Name="IDBL" ColumnName="IDBL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIENTHUEPHONGs">
+            <EntityTypeMapping TypeName="QLKTXModel.TIENTHUEPHONG">
+              <MappingFragment StoreEntitySet="TIENTHUEPHONG">
+                <ScalarProperty Name="LOAIPHONG" ColumnName="LOAIPHONG" />
+                <ScalarProperty Name="TIENTHUE" ColumnName="TIENTHUE" />
+                <ScalarProperty Name="SOGIUONG" ColumnName="SOGIUONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOAs">
+            <EntityTypeMapping TypeName="QLKTXModel.TOA">
+              <MappingFragment StoreEntitySet="TOA">
+                <ScalarProperty Name="TENTOA" ColumnName="TENTOA" />
+                <ScalarProperty Name="SOLUONGPHONG" ColumnName="SOLUONGPHONG" />
+                <ScalarProperty Name="TOANAM" ColumnName="TOANAM" />
+                <ScalarProperty Name="TSGIUONGTRONG" ColumnName="TSGIUONGTRONG" />
+                <ScalarProperty Name="TSGIUONG" ColumnName="TSGIUONG" />
+                <ScalarProperty Name="TONGDATHUE" ColumnName="TONGDATHUE" />
+                <ScalarProperty Name="IDTOA" ColumnName="IDTOA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="QLKTXModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="QLKTXModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="TENUSER" ColumnName="TENUSER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

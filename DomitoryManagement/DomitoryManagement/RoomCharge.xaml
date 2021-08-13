@@ -1,0 +1,1146 @@
+﻿<Window x:Class="DomitoryManagement.RoomCharge"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Times New Roman"
+        mc:Ignorable="d"
+        DataContext="{StaticResource RoomChargeVM}"
+        Icon="Anh/hand.png"
+        Title=" Thu lệ phí" Height="800" Width="1500">
+    <Window.Resources >
+        <Style TargetType="TextBlock"  >
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+        </Style>
+        <Style TargetType="TextBox"  >
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+        </Style>
+        <Style TargetType="DataGridColumnHeader"  >
+            <!--<Setter Property="HorizontalAlignment" Value="Center"></Setter>-->
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+
+        </Style>
+        <Style TargetType="DataGridCell" >
+            <Setter Property="FontSize" Value="17"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Margin" Value="10,20"></Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBlock 
+                       Text="Nộp lệ phí" 
+                       FontSize="30" 
+                       FontWeight="Bold"
+                       Height="60" 
+                       TextAlignment="Center"
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center" Width="auto" Foreground="#FF2A69E7" Margin="42,7,0,3.4" 
+                       />
+                <!--<Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"></ColumnDefinition>
+                            <ColumnDefinition Width="300"></ColumnDefinition>
+                            <ColumnDefinition Width="300"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" 
+                       Text="Nhập MSSV "
+                       FontSize="23" 
+                       FontFamily="Times New Roman"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" Margin="212,23,14,20.4"></TextBlock>
+                        <TextBox Grid.Column="1" 
+                     Width="280" 
+                     Height="35
+                     " 
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"
+                     TextAlignment="Center"
+                     BorderBrush="Gray" 
+                     BorderThickness="5"
+                     Text="{Binding MSSVFindNumber,NotifyOnSourceUpdated=True ,UpdateSourceTrigger=PropertyChanged }"/>
+                        <Button Grid.Column="2" 
+                    Width="150" 
+                    Height="30" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Left"
+                    IsDefault="True"
+                    FontSize="20" Background="#FFB73A50"
+                    Command="{Binding FindMSSV}"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                    >
+                            <Grid>
+                                <materialDesign:PackIcon   Kind="Magnify" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBlock Text="    Tìm kiếm" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                            </Grid>
+                        </Button>-->
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="850"></ColumnDefinition>
+                    <ColumnDefinition Width="550"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <!--cột trái bự-->
+                <Border BorderBrush="Black" BorderThickness="2" Grid.ColumnSpan="2" Margin="37,0,514.6,0" CornerRadius="5">
+                    <Grid Grid.Column="0"  >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <!--Tiêu đề-->
+                        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="0,0,0,2" >
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="0.345"/>
+                                    <GradientStop Color="#FFE7E3E3" Offset="0.907"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid  >
+                                <!--chứa 3 cái tiêu đề-->
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="      Thu phí  " FontSize="25" Foreground="#FF0746F4"  ></TextBlock>
+
+                                    <TextBlock FontSize="26" FontWeight="Bold" Foreground="#FFFC590C" Text="{Binding TENHOCKI}" >
+
+                                    </TextBlock>
+
+
+                                    <TextBlock FontSize="26" FontWeight="Bold" Foreground="#FFFC590C" Text="{Binding LOAIPHONG}"></TextBlock>
+
+
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <!--Nội dung-->
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70"></RowDefinition>
+                                <RowDefinition Height="70"></RowDefinition>
+                                <RowDefinition Height="70"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="150"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" 
+                                   Text="Số biên lai"
+                                   FontSize="20"
+                                   FontFamily="Times New Roman"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"></TextBlock>
+                                <Border  BorderBrush="Gray" Grid.Column="1" Height="35"
+                                 Width="150"
+                                 BorderThickness="2">
+                                    <TextBlock  Text="{Binding SelectedIDBIENLAI}"
+                                           TextAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center">
+
+                                    </TextBlock>
+                                </Border>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" 
+                                   Text="Ngày in BL"
+                                   FontSize="20"
+                                   FontFamily="Times New Roman"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"></TextBlock>
+                                <Border  BorderBrush="Gray" Grid.Column="1" Height="35"
+                                 Width="150"
+                                 BorderThickness="2">
+                                    <TextBlock 
+                                 TextAlignment="Center"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                 Text="{Binding NGAYINBL}">
+                                    </TextBlock>
+                                </Border>
+
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="164*"></ColumnDefinition>
+                                    <ColumnDefinition Width="165*"></ColumnDefinition>
+                                    <ColumnDefinition Width="150*"></ColumnDefinition>
+                                    <ColumnDefinition Width="108*"></ColumnDefinition>
+                                    <ColumnDefinition Width="164*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" 
+                                   Text="Ngày bắt đầu ở"
+                                   FontSize="20"
+                                   FontFamily="Times New Roman"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right" Height="22" Margin="0,24" Width="122"></TextBlock>
+                                <Border  BorderBrush="Gray" Grid.Column="1" Height="35"
+                                 Width="150"
+                                 BorderThickness="2">
+                                    <TextBox 
+                                 TextAlignment="Center"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                 Text="{Binding NGAYVAO,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+                                                <Setter Property="FontSize" Value="20"></Setter>
+                                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                                <Setter Property="TextAlignment" Value="Center"></Setter>
+                                                <Setter Property="IsEnabled" Value="False"></Setter>
+                                                <Style.Triggers >
+                                                    <DataTrigger Binding ="{Binding Path=isAlterNGDB,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Value ="false">
+                                                        <Setter Property="IsEnabled" Value="False"></Setter>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding ="{Binding Path=isAlterNGBD,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Value ="true">
+                                                        <Setter Property="IsEnabled" Value="True"></Setter>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                                <Button Grid.Column="2"
+                                Height="30"
+                               
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                   
+                                    
+                                 Grid.ColumnSpan="2"  >
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}" >
+                                            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+                                            <Setter Property="FontSize" Value="20"></Setter>
+                                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                            <Setter Property="Background" Value="#FF4DE849"></Setter>
+                                            <Setter Property="Command" Value="{Binding AlterNGBDCommand}"></Setter>
+                                            <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth5"></Setter>
+                                            <Setter Property="Padding" Value="5 0 0 0"/>
+                                            <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+
+                                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+
+                                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+                                            <Style.Triggers >
+
+                                                <DataTrigger Binding ="{Binding Path=isAlterNGBD,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Value ="True">
+                                                    <Setter Property="Background" Value="Red"></Setter>
+                                                    <Setter Property="Command" Value="{Binding SAVENGBDCommand}"></Setter>
+                                                    <Setter Property="Width" Value="90"></Setter>
+
+
+                                                </DataTrigger>
+                                            </Style.Triggers>
+
+                                        </Style>
+                                    </Button.Style>
+                                    <StackPanel   Orientation="Horizontal">
+
+                                        <materialDesign:PackIcon Height="20" Width="15"   HorizontalAlignment="Left" Margin="2,2,0,0"   >
+                                            <materialDesign:PackIcon.Style>
+                                                <Style TargetType="materialDesign:PackIcon">
+                                                    <Setter Property="Kind" Value="Key"></Setter>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding ="{Binding Path=isAlterNGBD,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Value ="true">
+                                                            <Setter Property="Kind" Value="ContentSave"></Setter>
+                                                        </DataTrigger>
+
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </materialDesign:PackIcon.Style>
+                                        </materialDesign:PackIcon>
+                                        <TextBlock  HorizontalAlignment="Right" TextAlignment="Justify" Margin="10,0,30,-0.6">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Text" Value="Chỉnh sửa" ></Setter>
+                                                    <Style.Triggers >
+                                                        <DataTrigger Binding ="{Binding Path=isAlterNGBD,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Value ="true">
+                                                            <Setter Property="Text" Value="Lưu"></Setter>
+
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <Button Grid.Column="3"
+                                Height="30"
+                                Width="250"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Background="#FF664FFF" 
+                                Command="{Binding GetDateCommand}"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth5" Grid.ColumnSpan="2" 
+                                >
+                                    <Grid   Width="250">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="4*"/>
+                                            <RowDefinition Height="19*"/>
+                                        </Grid.RowDefinitions>
+                                        <materialDesign:PackIcon   Kind="Key" HorizontalAlignment="Left" Margin="2,3,0,0" Grid.RowSpan="2"    />
+                                        <TextBlock Text="Chọn ngày hôm nay" HorizontalAlignment="Right" Margin="0,-1,65,0.4" Grid.RowSpan="2"></TextBlock>
+                                    </Grid>
+                                </Button>
+                            </Grid>
+                            <Grid Grid.Row="3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Border BorderBrush="Gray" BorderThickness="2" Grid.Row="0">
+                                </Border>
+                                <Border BorderBrush="Gray" BorderThickness="2" Grid.Row="1">
+                                </Border>
+                                <Border BorderBrush="Gray" BorderThickness="2" Grid.Row="2">
+                                </Border>
+                                <Border BorderBrush="Gray" BorderThickness="2" Grid.Row="3">
+                                </Border>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="0">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="1">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="2">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="3">
+                                    </Border>
+                                    <TextBlock Grid.Column="0"
+                                       Text="STT"
+                                       FontSize="20" FontWeight="Bold"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center">
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1" 
+                                       Text="Nội dung" 
+                                       FontSize="20" FontWeight="Bold"
+                                       FontFamily="Times New Roman"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="2"
+                                       Text="Đơn vị"
+                                       FontSize="20" FontWeight="Bold"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="3"
+                                       Text="Đơn giá"
+                                       FontSize="20" FontWeight="Bold"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="4"
+                                       Text="Thành tiền"
+                                       FontSize="20" FontWeight="Bold"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1"   >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=DADONGTIENPHONG}" Value="True">
+                                                    <Setter Property="Background" Value="#FFA6C3EE"></Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="0">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="1">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="2">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="3">
+                                    </Border>
+                                    <Grid Grid.Column="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15"></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0"
+                                       Text="1"
+                                       FontSize="20" FontWeight="Bold"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center" Margin="4,18,0,18"></TextBlock>
+                                        <CheckBox Grid.Column="1"
+                                          Height="30"
+                                          Width="30" Margin="7.8,19,7,5.4">
+                                            <CheckBox.Style>
+                                                <Style TargetType="CheckBox">
+                                                    <Setter Property="IsEnabled" Value="True" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=DADONGTIENPHONG}" Value="True">
+                                                            <Setter Property="IsEnabled" Value="False" />
+                                                            <Setter Property="IsChecked" Value="False" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </CheckBox.Style>
+
+
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <i:InvokeCommandAction Command="{Binding CheckTIENTHUE}"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="Unchecked">
+                                                    <i:InvokeCommandAction Command="{Binding UncheckTIENTHUE}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </CheckBox>
+                                    </Grid>
+
+                                    <TextBlock Grid.Column="1"  TextAlignment="Center"
+                                     Text="{Binding TENTIENTHUE}" TextWrapping="WrapWithOverflow"
+                                     
+                                     Height="52" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="2"
+                                       Text="Đồng/tháng"
+                                       FontSize="20"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="3"
+                                       
+                                       FontSize="20"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Center"
+                                       Text="{Binding stringTIENTHUE}"
+                                       VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="4"
+                                       Text="{Binding SUMTIENTHUE}"
+                                       FontSize="20"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=DADONGTIENBHYT}" Value="True">
+                                                    <Setter Property="Background" Value="#FFA6C3EE"></Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="0">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="1">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="2">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="3">
+                                    </Border>
+                                    <Grid Grid.Column="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15"></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0"
+                                       Text="2"
+                                       FontSize="20" FontWeight="Bold"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center" Margin="4,19,0,18.8"></TextBlock>
+                                        <CheckBox Grid.Column="1"
+                                          Height="30"
+                                          Width="30" Margin="6.8,21,8,3.4"
+                                          >
+                                            <CheckBox.Style>
+                                                <Style TargetType="CheckBox">
+                                                    <Setter Property="IsEnabled" Value="True" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=DADONGTIENBHYT}" Value="True">
+                                                            <Setter Property="IsEnabled" Value="False" />
+                                                            <Setter Property="IsChecked" Value="False" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </CheckBox.Style>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <i:InvokeCommandAction Command="{Binding CheckTIENBHYT}"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="Unchecked">
+                                                    <i:InvokeCommandAction Command="{Binding UncheckTIENBHYT}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </CheckBox>
+                                    </Grid>
+                                    <TextBlock Grid.Column="1" 
+                                     Text="{Binding TENTIENBHYT}"
+                                        TextAlignment="Center" Padding="0 15 0 0"
+                                     Height="52" HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="2"
+                                       Text="Đồng/12tháng"
+                                       FontSize="20"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="3"
+                                       Text="{Binding stringTIENBHYT}"
+                                       FontSize="20"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="4"
+                                       Text="{Binding SUMTIENBHYT}"
+                                       FontSize="20"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=DADONGTIENBHTN}" Value="True">
+                                                    <Setter Property="Background" Value="#FFA6C3EE"></Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="0">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="1">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="2">
+                                    </Border>
+                                    <Border BorderBrush="Gray" BorderThickness="2" Grid.Column="3">
+                                    </Border>
+                                    <Grid Grid.Column="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15"></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0"
+                                       Text="3"
+                                       FontSize="20" FontWeight="Bold"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center" Margin="4,18,0,18"></TextBlock>
+                                        <CheckBox Grid.Column="1"
+                                          Height="30"
+                                          Width="30" Margin="5.8,21,9,3.4"
+                                          >
+                                            <CheckBox.Style>
+                                                <Style TargetType="CheckBox">
+                                                    <Setter Property="IsEnabled" Value="True" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=DADONGTIENBHTN}" Value="True">
+                                                            <Setter Property="IsEnabled" Value="False" />
+                                                            <Setter Property="IsChecked" Value="False" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </CheckBox.Style>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <i:InvokeCommandAction Command="{Binding CheckTIENBHTN}"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="Unchecked">
+                                                    <i:InvokeCommandAction Command="{Binding UncheckTIENBHTN}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </CheckBox>
+                                    </Grid>
+                                    <TextBlock Grid.Column="1" 
+                                     Text="{Binding TENTIENBHTN}" Padding="0 15 0 0"
+                                      TextAlignment="Justify"
+                                     Height="52" HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="2"
+                                       Text="Đồng/ Năm"
+                                       FontSize="20"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="3"
+                                       Text="{Binding stringTIENBHTN}"
+                                       FontSize="20"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="4"
+                                       Text="{Binding SUMTIENBHTN}"
+                                       FontSize="20"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="4">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="200"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="3" 
+                                       Text="Tổng tiền:"
+                                       FontSize="20" FontWeight="Bold"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       ></TextBlock>
+                                    <TextBlock Grid.Column="4"
+                                       Text="{Binding SUMMONEY}"
+                                       FontSize="22"
+                                       FontFamily="Times New Roman" FontWeight="Bold"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="5" Foreground="#FFF10101"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="500"></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Grid.Column="1" 
+                                        Width="100"
+                                        Height="35"
+                                        
+                                        HorizontalAlignment="Right"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                                            Command="{Binding SAVEBL}"
+                                        Margin="0,19,114,16.8" Background="#FFF62107" Grid.ColumnSpan="2">
+                                            <Grid>
+                                                <materialDesign:PackIcon Height="35" Kind="ContentSave" Margin="-29,-3,0,-4.8" />
+                                                <TextBlock Text=" Lưu" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="-14,0,-22.4,0.2"/>
+
+                                            </Grid>
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Border>
+                <Grid Grid.Column="1" Margin="60.6,-3,-60.4,3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Row="0" Margin="5" Header="Thông tin sinh viên" FontSize="20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image Source="/Anh/student.png"></Image>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <TextBlock Text="{Binding Name}" Width="auto" TextAlignment="Justify"
+                                           FontSize="25" Foreground="ForestGreen" FontWeight="Bold"
+                                           FontFamily="Times New Roman"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="140"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="0"></Border>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1"></Border>
+                                    <TextBlock Grid.Column="0" 
+                                           Text="Ngày sinh "
+                                           FontSize="20" 
+                                           FontFamily="Times New Roman"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Grid.Column="1"  FontWeight="Bold" Text="{Binding Birthday}"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="140"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="0"></Border>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1"></Border>
+                                    <TextBlock Grid.Column="0" 
+                                           Text="Giới tính "
+                                           FontSize="20" 
+                                           FontFamily="Times New Roman"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Grid.Column="2"  FontWeight="Bold" Text="{Binding Sex}"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="140"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="0"></Border>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1"></Border>
+                                    <TextBlock Grid.Column="0" 
+                                           Text="SV trường "
+                                           FontSize="20" 
+                                           FontFamily="Times New Roman"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Grid.Column="3" FontWeight="Bold" Text="{Binding SchoolName}"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="140"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="0"></Border>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1"></Border>
+                                    <TextBlock Grid.Column="0" 
+                                           Text="SV năm "
+                                           FontSize="20" 
+                                           FontFamily="Times New Roman"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Grid.Column="4" FontWeight="Bold" Text="{Binding LearningYear}"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="140"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="0"></Border>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1"></Border>
+                                    <TextBlock Grid.Column="0" 
+                                           Text="Nhà/ Phòng "
+                                           FontSize="20" 
+                                           FontFamily="Times New Roman"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Grid.Column="5" FontWeight="Bold" Text="{Binding NhaPhong}"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="6">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="140"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="0"></Border>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="1"></Border>
+                                    <TextBlock Grid.Column="0" 
+                                           Text="Ngày bắt đầu ở "
+                                           FontSize="20" 
+                                           FontFamily="Times New Roman"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Grid.Column="6" FontWeight="Bold" Text="{Binding NGAYVAO}"></TextBlock>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </GroupBox>
+                    <Grid Grid.Row="1"  >
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <!--Tiêu đề-->
+                        <Border Grid.Row="0"  BorderBrush="Blue" BorderThickness="2,2,2,0" >
+                            <Grid >
+                                <Grid.Background>
+
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="White" Offset="0.345"/>
+                                        <GradientStop Color="#FFE7E3E3" Offset="0.907"/>
+                                    </LinearGradientBrush>
+
+                                </Grid.Background>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text=" Danh sách biên lai của " FontSize="25" Foreground="#FF0746F4"  ></TextBlock>
+
+                                    <TextBlock FontSize="26" FontWeight="Bold" Foreground="#FFFC590C" Text="{Binding TENHOCKI}" ></TextBlock>
+
+
+
+                                </StackPanel>
+
+
+                            </Grid>
+                        </Border>
+                        <!--Biên lai-->
+                        <Border Grid.Row="1" BorderBrush="Blue" BorderThickness="2" >
+                            <Grid>
+                                <Grid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+                                    </Style>
+                                </Grid.Resources>
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                    <ItemsControl x:Name="ReceiptFrame" ItemsSource="{Binding BIENLAIFULLLIST,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <ItemsControl.ItemsPanel  >
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical"></WrapPanel>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <!--Mẫu khung-->
+                                                <Grid  Width="500.6" Height="270" VerticalAlignment="Center">
+
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="35"></RowDefinition>
+                                                        <RowDefinition></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <!--Tiêu đề-->
+                                                    <Border Grid.Row="0"   BorderBrush="Gray" BorderThickness="3,3,3,2" >
+                                                        <Grid >
+                                                            <Grid.Background>
+
+                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                    <GradientStop Color="#FFD3E7F4" Offset="0.345"/>
+                                                                    <GradientStop Color="#FF83CCFF" Offset="0.907"/>
+                                                                </LinearGradientBrush>
+
+                                                            </Grid.Background>
+                                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                                <materialDesign:PackIcon Kind="CalendarText" Height="25" Width="25" />
+                                                                <TextBlock Text=" Số biên lai: " FontSize="20" Foreground="#FF4C0E09"  ></TextBlock>
+                                                                <TextBlock Text="{Binding IDBL}" FontSize="22" Foreground="#FFFA0000" ></TextBlock>
+                                                            </StackPanel>
+
+                                                        </Grid>
+                                                    </Border>
+                                                    <!--Biên lai-->
+                                                    <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="2" >
+                                                        <Grid>
+                                                            <!--Chia cột trái và phải bự-->
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+                                                            <!--Cột trái-->
+                                                            <StackPanel Grid.Column="0" >
+                                                                <!--Chia thành 5 dòng-->
+
+                                                                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5" >
+                                                                    <TextBlock Text="Học kì: " FontWeight="Bold" FontSize="15"   VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"></TextBlock>
+                                                                    <TextBlock Text="{Binding TENHOCKI}" FontSize="15"   VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                                                </StackPanel>
+                                                                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                                                                    <TextBlock Text="Năm học: " FontWeight="Bold" FontSize="15"   VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"></TextBlock>
+                                                                    <TextBlock Text="{Binding TENNAMHOC}" FontSize="15"   VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                                                </StackPanel>
+                                                                <StackPanel Grid.Row="2" Orientation="Vertical" Margin="5" >
+                                                                    <TextBlock Text="Ngày in BL: " FontWeight="Bold" FontSize="15"   VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center"></TextBlock>
+                                                                    <TextBlock Text="{Binding NGAYINBL}" FontSize="15"   VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+                                                                </StackPanel>
+                                                                <StackPanel Grid.Row="3" Orientation="Vertical" Margin="5" >
+                                                                    <TextBlock Text="Người thu: " FontWeight="Bold" FontSize="15"   VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center"></TextBlock>
+                                                                    <TextBlock Text="{Binding TENNGUOITHU}" FontSize="15"   VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Justify" TextWrapping="WrapWithOverflow"></TextBlock>
+                                                                </StackPanel>
+                                                                <Grid Grid.Row="4">
+                                                                    <Button 
+                                            Width="100"
+                                            Height="25"
+                                        
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Bottom"
+                                                materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                                                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.DeleteBL}"
+                                                            CommandParameter="{Binding Path=IDBL}"
+                                             Background="#FFF62107"  >
+                                                                        <Grid>
+                                                                            <materialDesign:PackIcon Height="25" Kind="ContentSave" Margin="-29,-4,0,-3.6" />
+                                                                            <TextBlock Text=" Hủy biên lai" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="-14,0,-22.4,0.2"/>
+
+                                                                        </Grid>
+                                                                    </Button>
+
+                                                                </Grid>
+
+                                                            </StackPanel>
+                                                            <!--Cột phải-->
+                                                            <Grid Grid.Column="1">
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition></RowDefinition>
+                                                                    <RowDefinition Height="30"></RowDefinition>
+                                                                    <!--Hàng đầu để cái Bảng-->
+                                                                </Grid.RowDefinitions>
+                                                                <Grid Grid.Row="0" >
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="30" ></RowDefinition>
+                                                                        <RowDefinition></RowDefinition>
+                                                                    </Grid.RowDefinitions>
+                                                                    <!--Dòng 1 là tiêu đề-->
+                                                                    <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2"  Width="320">
+                                                                        <Grid>
+                                                                            <Grid.ColumnDefinitions>
+                                                                                <ColumnDefinition Width="7*"></ColumnDefinition>
+                                                                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                                            </Grid.ColumnDefinitions>
+                                                                            <TextBlock Grid.Column="0" Text="Nội dung"  FontWeight="Bold" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Left">
+
+                                                                            </TextBlock>
+                                                                            <TextBlock Grid.Column="1" Text="Số tiền" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" >
+
+                                                                            </TextBlock>
+                                                                        </Grid>
+
+                                                                    </Border>
+                                                                    <!--Dòng 2 nội dung của bảng-->
+                                                                    <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0"  Width="320">
+                                                                        <Grid>
+                                                                            <Grid.RowDefinitions>
+                                                                                <RowDefinition></RowDefinition>
+                                                                                <RowDefinition></RowDefinition>
+                                                                                <RowDefinition></RowDefinition>
+                                                                            </Grid.RowDefinitions>
+                                                                            <!--Dòng 1-->
+                                                                            <Grid Grid.Row="0">
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="153*"></ColumnDefinition>
+                                                                                    <ColumnDefinition Width="63*"/>
+                                                                                    <ColumnDefinition Width="124*"></ColumnDefinition>
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <Border BorderBrush="Gray" BorderThickness="2,2,0,2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.2">
+                                                                                </Border>
+                                                                                <Border BorderBrush="Gray" BorderThickness="0,2,2,2" Grid.Column="2" Margin="0,0,0,0.2">
+                                                                                </Border>
+                                                                                <!--Nội dung-->
+                                                                                <WrapPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2" Margin="2">
+                                                                                    <WrapPanel.Resources>
+                                                                                        <Style TargetType="TextBlock">
+                                                                                            <Setter Property="FontSize" Value="15"></Setter>
+
+                                                                                        </Style>
+                                                                                    </WrapPanel.Resources>
+                                                                                    <TextBlock Text="Tiền LPNT "></TextBlock>
+                                                                                    <TextBlock Text="{Binding Path=TENHOCKI}"></TextBlock>
+                                                                                    <TextBlock Text=" ("></TextBlock>
+                                                                                    <TextBlock Text="{Binding TENNAMHOC}"></TextBlock>
+                                                                                    <TextBlock Text=")"></TextBlock>
+                                                                                    <TextBlock Text=" từ "></TextBlock>
+                                                                                    <TextBlock Text="{Binding NGAYVAO}"></TextBlock>
+                                                                                    <TextBlock Text=" đến "></TextBlock>
+                                                                                    <TextBlock Text="{Binding NGAYKETHUC}"></TextBlock>
+                                                                                </WrapPanel>
+                                                                                <TextBlock VerticalAlignment="Center" Grid.Column="2" Margin="0,0,0,-0.8">
+                                                                                    <TextBlock.Style>
+                                                                                        <Style TargetType="TextBlock">
+                                                                                            <Setter Property="Text" Value="0đ"></Setter>
+                                                                                            <Setter Property="FontSize" Value="15"></Setter>
+                                                                                            <Style.Triggers>
+                                                                                                <DataTrigger Binding="{Binding Path=DONGTIENPHONG}" Value="True">
+                                                                                                    <Setter Property="Text" Value="{Binding TIENPHONGDADONG}"></Setter>
+                                                                                                </DataTrigger>
+                                                                                            </Style.Triggers>
+                                                                                        </Style>
+                                                                                    </TextBlock.Style>
+                                                                                </TextBlock>
+                                                                                <!--Nội dung-->
+                                                                            </Grid>
+                                                                            <Grid Grid.Row="1">
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                                                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <Border BorderBrush="Gray" BorderThickness="2,2,0,2" Grid.Column="0">
+                                                                                </Border>
+                                                                                <Border BorderBrush="Gray" BorderThickness="0,2,2,2" Grid.Column="1">
+                                                                                </Border>
+                                                                                <!--Nội dung-->
+                                                                                <TextBlock Text="Tiền BHYT" FontSize="15" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Margin="2">
+
+                                                                                </TextBlock>
+                                                                                <TextBlock VerticalAlignment="Center"  Grid.Column="2" Margin="0,0,0,-0.8">
+                                                                                    <TextBlock.Style>
+                                                                                        <Style TargetType="TextBlock">
+                                                                                            <Setter Property="Text" Value="0đ"></Setter>
+                                                                                            <Setter Property="FontSize" Value="15"></Setter>
+                                                                                            <Style.Triggers>
+                                                                                                <DataTrigger Binding="{Binding Path=DONGTIENBHYT}" Value="True">
+                                                                                                    <Setter Property="Text" Value="457,380đ"></Setter>
+                                                                                                </DataTrigger>
+                                                                                            </Style.Triggers>
+                                                                                        </Style>
+                                                                                    </TextBlock.Style>
+                                                                                </TextBlock>
+                                                                                <!--Nội dung-->
+                                                                            </Grid>
+                                                                            <Grid Grid.Row="2">
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                                                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <Border BorderBrush="Gray" BorderThickness="2,2,0,2" Grid.Column="0">
+                                                                                </Border>
+                                                                                <Border BorderBrush="Gray" BorderThickness="0,2,2,2" Grid.Column="1">
+                                                                                </Border>
+                                                                                <!--Nội dung-->
+                                                                                <TextBlock Text="Tiền BHTN" FontSize="15" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Margin="2">
+
+                                                                                </TextBlock>
+                                                                                <TextBlock VerticalAlignment="Center" Grid.Column="2" Margin="0,0,0,-0.8">
+                                                                                    <TextBlock.Style>
+                                                                                        <Style TargetType="TextBlock">
+                                                                                            <Setter Property="Text" Value="0đ"></Setter>
+                                                                                            <Setter Property="FontSize" Value="15"></Setter>
+                                                                                            <Style.Triggers>
+                                                                                                <DataTrigger Binding="{Binding Path=DONGTIENBHTN}" Value="True">
+                                                                                                    <Setter Property="Text" Value="40,000đ"></Setter>
+                                                                                                </DataTrigger>
+                                                                                            </Style.Triggers>
+                                                                                        </Style>
+                                                                                    </TextBlock.Style>
+                                                                                </TextBlock>
+                                                                                <!--Nội dung-->
+                                                                            </Grid>
+                                                                        </Grid>
+
+                                                                    </Border>
+                                                                </Grid>
+
+                                                                <!--Hàng 2 để Tổng cộng-->
+                                                                <Grid Grid.Row="1" >
+                                                                    <Grid.ColumnDefinitions>
+
+                                                                        <ColumnDefinition Width="135"></ColumnDefinition>
+                                                                        <ColumnDefinition ></ColumnDefinition>
+                                                                        
+                                                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                                        <ColumnDefinition Width="200"></ColumnDefinition>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <TextBlock Grid.Column="2" 
+                                       Text="Tổng tiền:"
+                                       FontSize="15" FontWeight="Bold"
+                                       FontFamily="Times New Roman"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       ></TextBlock>
+                                                                    <TextBlock Grid.Column="3"
+                                       Text="{Binding stringTONGTIEN}"
+                                       FontSize="17"
+                                       FontFamily="Times New Roman" FontWeight="Bold"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="5" Foreground="#FFF10101"></TextBlock>
+                                                                </Grid>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </Border>
+
+
+                                                </Grid>
+                                                <!--Mẫu khung-->
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+
+                                    </ItemsControl>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+
+
+
+
+                    </Grid>
+
+                </Grid>
+            </Grid>
+        </Grid>
+
+
+    </Grid>
+</Window>
